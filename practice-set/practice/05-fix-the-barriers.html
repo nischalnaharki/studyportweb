@@ -1,0 +1,28 @@
+<!doctype html>
+<!-- PRACTICE — P1.05 Accessibility · This page has the 6 common barriers from the lesson (and it fails validation on purpose).
+     ★   Find all 6 and write them down (line + barrier).
+     ★★  Fix them all.
+     ★★★ Run Lighthouse → Accessibility. Get 100. Then write one thing Lighthouse could NOT check. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kathmandu Café | Menu</title>
+  <style>
+    .soft { color: #cfcfcf; }
+    .sale { color: red; }
+    *:focus { outline: none; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Kathmandu Café</h1>
+  <img src="../assets/momo.svg" width="240" height="160">
+  <p class="soft">Open every day from 7 AM. Free Wi-Fi for customers.</p>
+  <p>Items in red are on sale today: <span class="sale">Masala tea</span>, Lemon tea.</p>
+  <p>To see the full menu, <a href="../02-semantic-html.html">click here</a>.</p>
+  <input type="email" placeholder="Email for offers">
+  <button type="button">Subscribe</button>
+</main>
+</body>
+</html>

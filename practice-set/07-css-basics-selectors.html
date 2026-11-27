@@ -1,0 +1,51 @@
+<!doctype html>
+<!-- ============================================================
+     DEMO PAGE for 07-css-basics-selectors.css  (lesson notes are in the .css file)
+     Phase 1 — Week 3 · Run: Live Server → open this page, edit the .css side by side
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS Basics &amp; Selectors | Momo Express</title>
+
+  <!-- 1. External stylesheet: the way we'll do it 99% of the time -->
+  <link rel="stylesheet" href="07-css-basics-selectors.css">
+
+  <!-- 1. Internal <style> block: fine for one-off demos, not for real sites -->
+  <style>
+    .from-style-block { border-left: 4px solid #2b7bd9; padding-left: 0.5rem; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Momo Express menu</h1>
+  <p class="tagline">Fresh, hand-folded, every morning.</p>
+
+  <!-- 1. Inline style attribute: avoid (hard to reuse, beats almost everything) -->
+  <p style="color: purple;">I'm styled inline (section 1).</p>
+  <p class="from-style-block">I'm styled from the &lt;style&gt; block (section 1).</p>
+
+  <section class="menu">
+    <h2>Steam momos</h2>
+    <ul class="dish-list">
+      <li class="dish">Chicken Steam Momo <span class="price">Rs 180</span></li>
+      <li class="dish dish--spicy">Buff Steam Momo <span class="price">Rs 170</span></li>
+      <li class="dish">Veg Steam Momo <span class="price">Rs 150</span></li>
+      <li class="dish dish--spicy">Paneer Chilli Momo <span class="price">Rs 220</span></li>
+    </ul>
+  </section>
+
+  <p id="offer">Today only: free soup with every jhol momo!</p>
+
+  <p>Links: <a href="06-seo-fundamentals.html">Previous lesson</a> ·
+     <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">MDN CSS reference</a></p>
+
+  <form action="07-css-basics-selectors.html" method="get">
+    <label for="coupon">Coupon code</label>
+    <input id="coupon" name="coupon" type="text" required>
+    <button type="submit">Apply</button>
+  </form>
+</main>
+</body>
+</html>

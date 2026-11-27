@@ -1,0 +1,66 @@
+/* LAYER 4 — COMPONENTS: one block per UI piece, named with BEM: block__element--modifier */
+
+/* --- site-header --- */
+.site-header {
+  background: var(--color-text);
+  padding-block: var(--space-3);
+}
+
+.site-header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-header__brand {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* --- button --- */
+.button {
+  display: inline-block;
+  background: var(--color-brand);
+  color: white;
+  border: 2px solid var(--color-brand);
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-3);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--color-brand-dark);
+}
+
+.button--small {
+  padding: var(--space-1) var(--space-2);
+}
+
+.button--outline {
+  background: transparent;
+  color: var(--color-brand);
+}
+
+/* --- card --- */
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+
+.card--featured {
+  border-color: var(--color-brand);
+  border-width: 2px;
+}
+
+.card__title {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.card__price {
+  color: var(--color-muted);
+}

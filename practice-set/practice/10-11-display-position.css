@@ -1,0 +1,13 @@
+/* PRACTICE — P1.10 Display + P1.11 Positioning
+   Display
+   ★   Turn .topnav links into a row of buttons with inline-block + padding.
+   ★★  Prove the whole button area is clickable (click the padding).
+   ★★★ Hide .sold-out with display: none — then explain in a comment when visibility: hidden would be better.
+   Positioning
+   ★   Pin .sold-out to the top-left corner of the .dish card.
+   ★★  Make .topnav sticky. (.filler is tall so you can scroll.)
+   ★★★ Fix .order-now to the bottom-right corner without covering the footer text on a 320px phone. */
+
+.filler {
+  min-height: 150vh;
+}

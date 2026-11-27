@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- ============================================================
+     DEMO PAGE for 16-css-architecture/main.css  (lesson notes are in main.css)
+     Phase 1 — Week 4 · Run: Live Server → open this folder's index.html
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS Architecture | Momo Express</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="../01-html-structure.html">Momo Express</a>
+      <a class="button button--small" href="../03-forms-and-validation.html">Order now</a>
+    </div>
+  </header>
+
+  <main class="container stack">
+    <h1>Our menu</h1>
+    <ul class="card-grid">
+      <li class="card">
+        <h2 class="card__title">Chicken Steam Momo</h2>
+        <p class="card__price">Rs 180</p>
+        <button class="button" type="button">Add to cart<span class="visually-hidden">: Chicken Steam Momo</span></button>
+      </li>
+      <li class="card card--featured">
+        <h2 class="card__title">Buff Jhol Momo</h2>
+        <p class="card__price">Rs 200</p>
+        <button class="button" type="button">Add to cart<span class="visually-hidden">: Buff Jhol Momo</span></button>
+      </li>
+      <li class="card">
+        <h2 class="card__title">Veg Kothey Momo</h2>
+        <p class="card__price">Rs 160</p>
+        <button class="button button--outline" type="button">Sold out today</button>
+      </li>
+    </ul>
+    <p class="text-muted">Prices include VAT.</p>
+  </main>
+</body>
+</html>

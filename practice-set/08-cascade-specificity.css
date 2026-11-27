@@ -1,0 +1,131 @@
+/* ============================================================
+   TOPIC: Cascade and Specificity
+   Phase 1 — Web Foundations: HTML & CSS (Week 3, Day 2)
+   By the end, students can:
+     - explain why two rules can target the same element and only one wins
+     - calculate specificity as (ids, classes, types)
+     - predict which properties inherit
+     - explain why !important and id selectors cause pain later
+   Prerequisites: 07-css-basics-selectors.css
+   Run: open 08-cascade-specificity.html with Live Server.
+        Predict each colour BEFORE you look. Then check DevTools → Styles.
+   Deck: "Web Foundations HTML & CSS" slides 23–25
+   ============================================================ */
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 2rem;
+}
+
+
+/* ===== 1. TWO RULES DISAGREE — WHO WINS? =====
+   Notes: The browser decides in this order:
+     1. Importance  (!important beats normal)
+     2. Specificity (more specific selector wins)
+     3. Source order (later rule wins)
+   "Cascade" = these rules flowing down and settling the conflict. */
+
+
+/* ===== 2. SOURCE ORDER: LAST ONE WINS (same specificity) ===== */
+.notice {
+  color: blue;
+}
+
+.notice {
+  color: green;                 /* ← wins: same specificity, comes later */
+}
+
+/* ✏️ LIVE CODE: swap the two rules above. Predict first. */
+
+
+
+/* ===== 3. SPECIFICITY: COUNT THE SELECTOR =====
+   Notes: Count (IDs, CLASSES/attributes/pseudo-classes, TYPES/pseudo-elements). Compare left to right.
+            p                 → (0,0,1)
+            .notice           → (0,1,0)
+            p.notice          → (0,1,1)
+            .notice.highlight → (0,2,0)
+            #special          → (1,0,0)   ← one id beats ANY number of classes
+          DevTools: hover a selector in the Styles panel to see its specificity. */
+p {
+  color: gray;                  /* (0,0,1) */
+}
+
+.highlight {
+  color: orange;                /* (0,1,0) */
+}
+
+#special {
+  color: purple;                /* (1,0,0) ← wins for #special, even though it's NOT last */
+}
+
+/* Same idea with nested selectors: */
+.menu .dish .price {
+  color: darkgreen;             /* (0,3,0) */
+}
+
+.price {
+  color: red;                   /* (0,1,0) — later, but LOSES. This is the classic "my CSS doesn't work!" */
+}
+
+/* ⚠️ Common mistake: using ids for styling
+   Wrong: #special { … }   → later you need !important to override it → specificity war
+   Right: style with classes; keep ids for links (#menu) and JavaScript */
+
+/* ✏️ LIVE CODE: make .price red WITHOUT !important and WITHOUT editing the .menu .dish .price rule */
+
+
+
+/* ===== 4. INHERITANCE: SOME STYLES FLOW DOWN =====
+   Notes: TEXT properties inherit: color, font-*, line-height, text-align, letter-spacing
+          BOX properties do not:    border, padding, margin, background, width
+          Force it with the keyword: inherit (e.g. links that should use the parent's colour) */
+.card {
+  color: #3b2a1a;
+  font-family: Georgia, serif;
+  border: 2px solid #d9442b;
+  padding: 1rem;
+}
+
+.card a {
+  color: inherit;               /* links don't inherit colour by default (browser styles them blue) */
+}
+
+/* ⚠️ Common mistake: "Why is my card paragraph GRAY, not brown?"
+   The p { color: gray } rule from section 3 targets the <p> DIRECTLY.
+   An inherited value ALWAYS loses to any rule that targets the element itself — even a weak (0,0,1) one.
+   Font and border? The font is inherited (no rule targets p's font). The border is not (box property). */
+
+
+/* ===== 5. !important: THE NUCLEAR OPTION =====
+   Notes: Beats normal rules regardless of specificity. The only way to beat it is ANOTHER !important.
+          OK for: utility classes you WANT to always win (.hidden), overriding third-party CSS.
+          Not OK for: "my style isn't applying" — find the real cause in DevTools instead. */
+.sale {
+  color: crimson !important;
+}
+
+p.sale {
+  color: black;                 /* more specific, but loses to !important */
+}
+
+/* Old pattern you'll see in the wild: CSS files with dozens of !important — a sign of a specificity war. */
+
+/* 🤖 AI tip: AI often "fixes" a CSS conflict by adding !important. Don't accept that.
+   Prompt → "My .price colour isn't applying. Here's my HTML and CSS. Explain WHICH rule is winning and
+   why (specificity numbers), then suggest a fix without !important." Then confirm in DevTools. */
+
+/* 🧪 TRY IT
+   1. ★   Calculate the specificity of: a, .nav a, #header .nav a:hover, ul li.active
+   2. ★★  In practice/08-who-wins.css, predict the final colour of each line, then check in DevTools.
+   3. ★★★ Remove every !important from practice/08-who-wins.css and keep the page looking the same.
+   Starter: practice/08-who-wins.html + practice/08-who-wins.css */
+
+/* ===== RECAP — ask the class =====
+   1. The 3 steps the browser uses to choose a winner?
+   2. Specificity of .menu .dish .price? Of #special?
+   3. Does border inherit? Does color?
+   4. When is !important acceptable?
+   5. Where in DevTools do you see which rule lost?
+   Practice: practice/08-who-wins.css
+   Next: 09-box-model.css */

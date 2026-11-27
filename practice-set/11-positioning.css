@@ -1,0 +1,150 @@
+/* ============================================================
+   TOPIC: Positioning
+   Phase 1 — Web Foundations: HTML & CSS (Week 3, Day 3)
+   By the end, students can:
+     - explain static, relative, absolute, fixed and sticky
+     - pin a badge to a card's corner (absolute inside relative)
+     - make a sticky header and a fixed button
+     - control overlapping with z-index
+   Prerequisites: 10-display.css
+   Run: open 11-positioning.html with Live Server and scroll
+   Deck: "Web Foundations HTML & CSS" slide 30
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+}
+
+main {
+  padding: 1rem 2rem 6rem;
+}
+
+.box {
+  background: #fff4d6;
+  border: 2px solid #d9442b;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  width: 280px;
+}
+
+
+/* ===== 1. static =====
+   Notes: The default. Boxes follow normal flow (block stacks, inline flows).
+          top/left/right/bottom do nothing on static elements. */
+
+
+/* ===== 2. relative =====
+   Notes: Moves the box visually from where it WOULD be, but keeps its original space.
+          Most common use: NOT to move anything — but to be the anchor for an absolute child. */
+.nudge {
+  position: relative;
+  left: 20px;
+  top: 10px;
+}
+
+/* ===== 3. absolute =====
+   Notes: Removed from the flow (others act like it doesn't exist).
+          Positioned relative to the nearest POSITIONED ancestor (relative/absolute/fixed/sticky).
+          No positioned ancestor? → it uses the whole page. That's the #1 surprise. */
+.dish-card {
+  position: relative;            /* ← the anchor */
+  width: 260px;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+}
+
+.badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #d9442b;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+/* ⚠️ Common mistake: forgetting the relative parent
+   Wrong: .badge { position: absolute; top: 0; right: 0 }  and no position on .dish-card
+          → the badge flies to the top-right corner of the PAGE
+   Right: .dish-card { position: relative }  */
+
+/* ✏️ LIVE CODE: remove position: relative from .dish-card and watch the badge jump */
+
+
+
+/* ===== 4. fixed & sticky =====
+   Notes: fixed  → pinned to the SCREEN (viewport); stays when you scroll. Chat buttons, cookie bars.
+          sticky → normal until you scroll to a threshold (top: 0), then sticks. Headers, table headings.
+          Sticky needs a top/bottom value, and breaks if a parent has overflow: hidden. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #2b2b2b;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.chat-button {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  background: #2b7bd9;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.long {
+  min-height: 60vh;              /* just to give us something to scroll */
+}
+
+/* ===== 5. z-index: WHO'S ON TOP =====
+   Notes: Higher z-index = closer to you. Only works on POSITIONED elements (not static).
+          Keep a small scale (1, 10, 100) — not z-index: 99999. */
+.stack {
+  position: relative;
+  height: 140px;
+}
+
+.layer {
+  position: absolute;
+  width: 140px;
+  height: 80px;
+  padding: 0.5rem;
+  color: white;
+}
+
+.layer-a { background: #d9442b; top: 0;    left: 0;     z-index: 1; }
+.layer-b { background: #2b7bd9; top: 25px; left: 60px;  z-index: 3; }
+.layer-c { background: #2e7d32; top: 50px; left: 120px; z-index: 2; }
+
+/* ⚠️ Common mistake: absolute positioning for whole-page layout
+   Wrong: every section absolutely placed at pixel positions → overlaps on phones, breaks with longer text
+   Right: normal flow + Flexbox/Grid for layout; absolute only for small decorations (badges, icons) */
+
+/* 🤖 AI tip: AI often uses position: absolute + magic pixel numbers to "fix" layout.
+   Ask: "Do it without absolute positioning, using normal flow or Flexbox." Then resize the window to test. */
+
+/* 🧪 TRY IT
+   1. ★   Put a "Sold out" badge on the top-left corner of a dish card.
+   2. ★★  Make a sticky navbar. Scroll to prove it works.
+   3. ★★★ Add a fixed "Order now" button that doesn't cover the footer text on a small phone (hint: padding-bottom on body).
+   Starter: practice/10-11-display-position.html */
+
+/* ===== RECAP — ask the class =====
+   1. What's absolute positioned relative to?
+   2. Fixed vs sticky?
+   3. Does relative take the element out of the flow?
+   4. Why doesn't z-index work on my static element?
+   5. When should you NOT use absolute positioning?
+   Practice: practice/10-11-display-position.html
+   Next: 12-flexbox.css */

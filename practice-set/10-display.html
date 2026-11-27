@@ -1,0 +1,41 @@
+<!doctype html>
+<!-- ============================================================
+     DEMO PAGE for 10-display.css  (lesson notes are in the .css file)
+     Phase 1 — Week 3 · Run: Live Server
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Display | Momo Express</title>
+  <link rel="stylesheet" href="10-display.css">
+</head>
+<body>
+<main>
+  <h1>How a box behaves in the flow</h1>
+
+  <h2>1. block</h2>
+  <div class="demo">div (block)</div>
+  <p class="demo">p (block)</p>
+
+  <h2>2. inline</h2>
+  <p>Text with <span class="demo">a span</span> and <a class="demo" href="09-box-model.html">a link</a> inside.</p>
+  <p>Inline ignores width/height: <span class="demo sized">span with width: 200px</span></p>
+
+  <h2>3. inline-block</h2>
+  <p><span class="demo sized tag">Spicy</span> <span class="demo sized tag">Veg</span> <span class="demo sized tag">New</span></p>
+
+  <h2>4. Changing display</h2>
+  <nav aria-label="Demo">
+    <a class="nav-link" href="01-html-structure.html">Home</a>
+    <a class="nav-link" href="02-semantic-html.html">Menu</a>
+    <a class="nav-link" href="03-forms-and-validation.html">Order</a>
+  </nav>
+
+  <h2>5. Hiding things</h2>
+  <p>display: none → <span class="gone">GONE</span> (no space left)</p>
+  <p>visibility: hidden → <span class="invisible">INVISIBLE</span> (space kept)</p>
+  <p>(flex and grid are display values too — next week.)</p>
+</main>
+</body>
+</html>

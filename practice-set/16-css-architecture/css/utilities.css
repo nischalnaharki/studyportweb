@@ -1,0 +1,17 @@
+/* LAYER 5 — UTILITIES: tiny single-purpose helpers. Loaded LAST so they win. */
+.text-muted {
+  color: var(--color-muted);
+}
+
+/* Hide visually but keep for screen readers (e.g. "Add to cart: Buff Jhol Momo") */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

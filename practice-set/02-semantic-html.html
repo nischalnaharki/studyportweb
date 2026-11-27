@@ -1,0 +1,146 @@
+<!doctype html>
+<!-- ============================================================
+     TOPIC: Semantic HTML
+     Phase 1 — Web Foundations: HTML & CSS (Week 2, Day 1–2)
+     By the end, students can:
+       - name the page regions: header, nav, main, section, article, aside, footer
+       - choose an element by MEANING, not by looks
+       - explain why semantics matter (screen readers, SEO, teammates)
+       - know when a plain div/span is fine
+     Prerequisites: 01-html-structure.html
+     Run: Live Server. Then turn CSS off in your head: can you still understand the page?
+     Deck: "Web Foundations HTML & CSS" slides 10–11
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Semantic HTML | Momo Express</title>
+</head>
+<body>
+
+  <!-- ===== 1. WHAT "SEMANTIC" MEANS =====
+       Notes: Semantic = the tag says WHAT the content IS.
+              <div> says nothing. <nav> says "these are the main links".
+              Same look on screen, very different meaning to a screen reader, Google and your teammates. -->
+
+  <!-- ⚠️ Common mistake: "div soup"
+       Wrong:  <div class="header"><div class="nav">…</div></div>
+               <div class="main">…</div>
+               <div class="footer">…</div>
+       Right:  <header><nav>…</nav></header>  <main>…</main>  <footer>…</footer>
+       Screen-reader users jump between landmarks with one key. div soup gives them nothing to jump to. -->
+
+
+  <!-- ===== 2. NAME THE REGIONS OF THE PAGE =====
+       Notes: header → intro: logo, site name, main nav
+              nav    → a group of IMPORTANT links (not every link!)
+              main   → the unique content of THIS page — exactly one per page
+              footer → closing info: contact, copyright
+       A "skip link" lets keyboard users jump past the nav straight to main. -->
+  <a href="#main">Skip to main content</a>
+
+  <header>
+    <img src="assets/logo.svg" alt="Momo Express" width="160" height="48">
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#story">Our story</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1>Momo Express, Thamel</h1>
+
+    <!-- ===== 3. SECTION vs ARTICLE =====
+         Notes: section → a thematic GROUP of content, usually with its own heading
+                article → SELF-CONTAINED content that makes sense on its own
+                          (a blog post, a review, a product card you could share alone)
+         Quick test: "Could I post this alone on Facebook and it still makes sense?" → article -->
+    <section id="menu" aria-labelledby="menu-heading">
+      <h2 id="menu-heading">Menu</h2>
+
+      <article>
+        <h3>Chicken Steam Momo</h3>
+        <p>Ten juicy momos with tomato-sesame achar.</p>
+        <p><strong>Rs 180</strong></p>
+      </article>
+
+      <article>
+        <h3>Buff Jhol Momo</h3>
+        <p>Served in our spicy jhol soup. A Kathmandu favourite.</p>
+        <p><strong>Rs 200</strong></p>
+      </article>
+    </section>
+
+    <section id="story" aria-labelledby="story-heading">
+      <h2 id="story-heading">Our story</h2>
+      <p>We started as a small stall near Thamel Chowk in 2015.</p>
+
+      <!-- ===== 4. ASIDE =====
+           Notes: aside → related but not essential: tips, side notes, "did you know?" boxes. -->
+      <aside>
+        <h3>Did you know?</h3>
+        <p>Momos came to Nepal with Newar traders travelling to and from Tibet.</p>
+      </aside>
+    </section>
+
+    <!-- ===== 5. LINKS NAVIGATE, BUTTONS ACT =====
+         Notes: <a href> → goes somewhere (a new page or place)
+                <button> → does something HERE (add to cart, open menu, submit)
+         Both are keyboard-accessible for free. A clickable <div> is NOT. -->
+    <section aria-labelledby="actions-heading">
+      <h2 id="actions-heading">Order</h2>
+      <a href="03-forms-and-validation.html">Go to the order form</a>
+      <button type="button">Add Chicken Steam Momo to cart</button>
+    </section>
+
+    <!-- ⚠️ Common mistake: fake buttons
+         Wrong: <div class="btn" onclick="addToCart()">Add</div>   (no keyboard, no focus, no role)
+         Wrong: <a href="#" onclick="addToCart()">Add</a>          (a link that doesn't go anywhere)
+         Right: <button type="button">Add</button> -->
+
+
+    <!-- ===== 6. WHEN A DIV OR SPAN IS FINE =====
+         Notes: Use <div>/<span> when NO semantic element fits — usually just a "hook" for CSS layout.
+                Semantic first, div second. Not "never div". -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <div class="contact-card">
+        <p>Open <time datetime="10:00">10 AM</time> – <time datetime="21:00">9 PM</time>, every day</p>
+        <address>Thamel Marg, Kathmandu · <a href="tel:+9779800000000">Call us</a></address>
+      </div>
+    </section>
+
+    <!-- ✏️ LIVE CODE: take the div-soup example from section 1 and convert it together, tag by tag -->
+
+
+  </main>
+
+  <footer>
+    <p><small>&copy; 2026 Momo Express. Made by StudyPort students.</small></p>
+  </footer>
+
+  <!-- 🤖 AI tip: Prompt → "Here is my page [paste]. For each div, tell me if a semantic element fits
+       better and why. Don't change anything else."
+       Check: AI loves wrapping EVERYTHING in <section> and adding needless ARIA roles
+       (<nav role="navigation"> is redundant). Fewer, correct tags beat more tags. -->
+
+  <!-- 🧪 TRY IT
+       1. ★   Convert practice/02-div-soup.html into semantic HTML (header, nav, main, footer).
+       2. ★★  Decide: is each block a section, article or aside? Write your reason in a comment.
+       3. ★★★ Add a skip link and test it with only the keyboard (Tab, then Enter).
+       Starter: practice/02-div-soup.html -->
+
+  <!-- ===== RECAP — ask the class =====
+       1. How many <main> elements per page?
+       2. section vs article — what's the test?
+       3. When do you use a button, and when a link?
+       4. Why is a clickable div bad for keyboard users?
+       5. Is <div> ever OK? When?
+       Practice: practice/02-div-soup.html
+       Next: 03-forms-and-validation.html -->
+</body>
+</html>

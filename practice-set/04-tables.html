@@ -1,0 +1,139 @@
+<!doctype html>
+<!-- ============================================================
+     TOPIC: Tables
+     Phase 1 — Web Foundations: HTML & CSS (Week 3, Day 1)
+     By the end, students can:
+       - build a data table with caption, thead, tbody, th and td
+       - link headers to cells with scope
+       - merge cells with colspan/rowspan
+       - explain why tables are for DATA, never for layout
+     Prerequisites: 02-semantic-html.html
+     Run: Live Server
+     Deck: "Web Foundations HTML & CSS" slide 15
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tables | StudyPort Academy</title>
+  <style>
+    /* Just enough CSS to see the grid lines (CSS starts in 07). */
+    table { border-collapse: collapse; margin-block: 1rem; }
+    th, td { border: 1px solid #999; padding: 0.4rem 0.8rem; text-align: left; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Tables</h1>
+
+  <!-- ===== 1. WHEN TO USE A TABLE =====
+       Notes: Use a table when data has ROWS and COLUMNS that mean something together.
+              Test: "Could this be a spreadsheet?" → yes = table.
+              Results, timetables, price lists, bus fares → table. Page layout → CSS (Flexbox/Grid). -->
+
+  <!-- ===== 2. TABLE ANATOMY =====
+       Notes: table → caption (the table's title) → thead (header rows) → tbody (data rows)
+              tr = table row · th = header cell · td = data cell
+              scope="col" / scope="row" tells screen readers which header a cell belongs to. -->
+  <table>
+    <caption>Bus fares from Ratnapark (Rs)</caption>
+    <thead>
+      <tr>
+        <th scope="col">Destination</th>
+        <th scope="col">Regular</th>
+        <th scope="col">Student</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Koteshwor</th>
+        <td>25</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <th scope="row">Kalanki</th>
+        <td>25</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <th scope="row">Bhaktapur</th>
+        <td>45</td>
+        <td>30</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ✏️ LIVE CODE: build a 3-column momo price table with the class (dish, plate size, price) -->
+
+
+
+  <!-- ===== 3. MERGING CELLS: colspan & rowspan =====
+       Notes: colspan="2" → the cell spans 2 columns · rowspan="2" → spans 2 rows.
+              Use sparingly: complex tables are hard for screen readers. Simple is better. -->
+  <table>
+    <caption>StudyPort semester results — Batch 2026</caption>
+    <thead>
+      <tr>
+        <th scope="col" rowspan="2">Student</th>
+        <th scope="colgroup" colspan="2">Marks (out of 100)</th>
+        <th scope="col" rowspan="2">Result</th>
+      </tr>
+      <tr>
+        <th scope="col">HTML &amp; CSS</th>
+        <th scope="col">JavaScript</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Sita Sharma</th>
+        <td>88</td>
+        <td>91</td>
+        <td>Distinction</td>
+      </tr>
+      <tr>
+        <th scope="row">Ram Thapa</th>
+        <td>72</td>
+        <td>65</td>
+        <td>First division</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="row">Class average</th>
+        <td>80</td>
+        <td>78</td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- ⚠️ Common mistake: tables for layout (very common in old websites from the 2000s)
+       Wrong: <table><tr><td>sidebar</td><td>content</td></tr></table>
+              → screen readers announce "table, 2 columns" for your whole page; breaks on phones
+       Right: <aside> + <main> laid out with CSS Grid (P1.13) -->
+
+  <!-- ⚠️ Common mistake: bold td instead of th
+       Wrong: <td><strong>Destination</strong></td>   (looks like a header, isn't one)
+       Right: <th scope="col">Destination</th> -->
+
+  <!-- 🤖 AI tip: Prompt → "Convert this CSV into an accessible HTML table with caption and scope:
+       [paste CSV]". Check: does every header use th + scope? Is there a caption? Did it keep every row?
+       Count the rows — AI sometimes drops or invents data. -->
+
+  <!-- 🧪 TRY IT
+       1. ★   Make your weekly class timetable as a table (days × time slots) with a caption.
+       2. ★★  Add row headers (th scope="row") for the days.
+       3. ★★★ Use colspan for a 2-hour lab slot and add a tfoot with total hours.
+       Starter: practice/04-timetable.html -->
+
+  <!-- ===== RECAP — ask the class =====
+       1. What's the "spreadsheet test" for using a table?
+       2. th vs td?
+       3. What does scope="row" do?
+       4. Where does the caption go, and why have one?
+       5. Why not use a table for page layout?
+       Practice: practice/04-timetable.html
+       Next: 05-accessibility.html -->
+</main>
+</body>
+</html>

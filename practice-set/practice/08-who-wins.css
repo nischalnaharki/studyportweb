@@ -1,0 +1,19 @@
+/* PRACTICE — P1.08 Cascade & specificity
+   ★   Write the specificity of: a · .nav a · #header .nav a:hover · ul li.active
+   ★★  Predict the final colour of Lines 1–4. Write your guesses here, then check in DevTools.
+       Line 1:        Line 2:        Line 3:        Line 4:
+   ★★★ Remove EVERY !important and every id selector, and keep the page looking EXACTLY the same. */
+
+p { color: black; }
+.line { color: gray; }
+.one { color: green; }
+.line.one { color: orange; }
+
+#second { color: purple; }
+.two { color: teal !important; }
+
+.box p { color: navy; }
+.three { color: crimson; }
+
+.four { color: brown !important; }
+#page .four { color: olive; }

@@ -1,0 +1,13 @@
+/* Theme colours for Momo Express. (Look carefully at how index.html links to this file.) */
+:root {
+  --brand: #d9442b;
+  --ink: #222;
+}
+
+.site-header {
+  background: var(--brand);
+}
+
+.site-header a {
+  color: white;
+}

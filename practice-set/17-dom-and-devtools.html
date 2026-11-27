@@ -1,0 +1,132 @@
+<!doctype html>
+<!-- ============================================================
+     TOPIC: DOM & Browser DevTools
+     Phase 1 — Web Foundations: HTML & CSS (Week 4, Day 3)
+     By the end, students can:
+       - explain the DOM and why it can differ from the source HTML
+       - use Elements to inspect and edit HTML/CSS live
+       - read the Console for errors and messages
+       - use Network to find failed requests (404s) and slow assets
+       - use Application to see local storage and cookies
+       - test layouts with device simulation
+     Prerequisites: 14-responsive-media-queries.css
+     Run: Live Server, then F12 (or Ctrl+Shift+I / Cmd+Opt+I). This page is BUILT to be inspected.
+          The small script at the bottom is "watch only" — JavaScript starts in Phase 2.
+     Deck: "Web Foundations HTML & CSS" slides 44–50
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DOM &amp; DevTools | Momo Express</title>
+  <link rel="stylesheet" href="14-responsive-media-queries.css">
+  <style>
+    .mystery { color: #d9442b; }
+    .mystery { color: #2e7d32; }
+    .devtools-task { border-left: 4px solid #2b7bd9; padding-left: 1rem; }
+  </style>
+</head>
+<body>
+<main class="content">
+  <h1>Your x-ray for every web page</h1>
+
+  <!-- ===== 1. THE DOM: WHAT THE BROWSER ACTUALLY HAS IN MEMORY =====
+       Notes: The browser reads your HTML and builds a TREE of objects: the DOM (Document Object Model).
+              View Source (Ctrl+U) = the file the server sent.
+              Elements panel       = the LIVE DOM, after the browser fixed mistakes and JavaScript changed it.
+              They can be different! JavaScript (Phase 2) works on the DOM, not the file. -->
+  <section class="devtools-task" aria-labelledby="dom-heading">
+    <h2 id="dom-heading">1. DOM vs source</h2>
+    <ul id="specials">
+      <li>Chicken Steam Momo</li>
+    </ul>
+    <p>Task: Compare View Source with the Elements panel. How many items are in the list in each? Why?</p>
+  </section>
+
+  <!-- ===== 2. ELEMENTS PANEL: "WHY DOES IT LOOK LIKE THAT?" =====
+       Notes: Right-click → Inspect. Styles shows every rule that applies; crossed-out = lost (P1.08).
+              Computed shows the final values + the box model diagram (P1.09).
+              You can edit text, add classes, toggle properties — changes vanish on reload (safe to experiment). -->
+  <section class="devtools-task" aria-labelledby="elements-heading">
+    <h2 id="elements-heading">2. Elements</h2>
+    <p class="mystery">Task: What colour am I, and which rule lost? Change my text to your name — live.</p>
+  </section>
+
+  <!-- ✏️ LIVE CODE: toggle checkboxes in the Styles panel; use the colour picker; show the flex/grid badges -->
+
+
+
+  <!-- ===== 3. CONSOLE: THE PAGE TALKS TO YOU =====
+       Notes: Red = errors, yellow = warnings, plus messages the code logs.
+              ALWAYS check the Console when "nothing happens". -->
+  <section class="devtools-task" aria-labelledby="console-heading">
+    <h2 id="console-heading">3. Console</h2>
+    <p>Task: Open the Console. Read the message this page logged. Then click the button and read the error.</p>
+    <button id="broken-button" type="button">Click me (I'm broken)</button>
+  </section>
+
+  <!-- ===== 4. NETWORK: DID EVERYTHING ACTUALLY ARRIVE? =====
+       Notes: Every file the page loads: status code, type, size, time.
+              Red rows = failures (404 missing file, CORS, server down). Reload with Network open!
+              Throttling → "Slow 4G" simulates a weak mobile connection in the hills. -->
+  <section class="devtools-task" aria-labelledby="network-heading">
+    <h2 id="network-heading">4. Network</h2>
+    <img src="assets/momo.svg" alt="Momos (this one loads)" width="120" height="80">
+    <img src="assets/Momo-Special.png" alt="Special momo (this one is broken — why?)" width="120" height="80">
+    <p>Task: Reload. Which request is red? What status code? Fix it by changing ONE thing in the src.</p>
+  </section>
+
+  <!-- ⚠️ Common mistake: "It works on my laptop!"
+       Windows doesn't care about Momo.svg vs momo.svg. Linux servers DO. Always match the exact filename.
+       (This broken image is ALSO the wrong file type — there is no PNG at all. Two bugs, one line.) -->
+
+  <!-- ===== 5. APPLICATION: WHERE THE BROWSER KEEPS DATA =====
+       Notes: Local storage / session storage = small key-value data saved by the site (e.g. a cart).
+              Cookies = small data sent with every request (e.g. "logged in"). More in Phase 2 and Phase 8.
+              You can view, edit and delete them here — handy for "clear and retry" debugging. -->
+  <section class="devtools-task" aria-labelledby="app-heading">
+    <h2 id="app-heading">5. Application: storage &amp; cookies</h2>
+    <p>Task: Application → Local storage → find the cart this page saved. Then find the cookie. Delete both and reload.</p>
+  </section>
+
+  <!-- ===== 6. DEVICE SIMULATION =====
+       Notes: Ctrl+Shift+M → pick a phone or drag the width. Rotate. Simulate touch.
+              Good for quick checks — but always test on a real phone before shipping. -->
+  <section class="devtools-task" aria-labelledby="device-heading">
+    <h2 id="device-heading">6. Device simulation</h2>
+    <p>Task: View this page at 320px, 768px and 1280px. At which width does the layout change?</p>
+  </section>
+
+  <!-- 🤖 AI tip: When asking AI about a visual bug, give it EVIDENCE from DevTools, not a description:
+       "Element: <p class="price">. Computed color: red. Expected green. Styles panel shows
+        .menu .dish .price (crossed out by…)". Check: verify its explanation by toggling that rule. -->
+
+  <!-- 🧪 TRY IT
+       1. ★   Find the font-size of the h1 in Computed. Change it live to 2rem.
+       2. ★★  Find the broken image in Network and fix it in the file.
+       3. ★★★ On any popular Nepali news site: how many requests, how many MB, and what's the slowest file?
+       Worksheet: practice/17-devtools-worksheet.md -->
+
+  <!-- ===== RECAP — ask the class =====
+       1. DOM vs page source — why can they differ?
+       2. Which panel tells you which CSS rule lost?
+       3. Where do you look when a button "does nothing"?
+       4. An image doesn't show. Which panel, and what status code do you expect?
+       5. Where can you see and delete local storage?
+       Practice: practice/17-devtools-worksheet.md
+       Next: Week 4 Debugging Lab → labs/w04-d4-debug-lab-breaks-on-mobile/ -->
+</main>
+
+<script>
+  // Watch-only demo code (JavaScript starts in Phase 2). It makes the DOM differ from the source,
+  // logs a message, saves a cart to local storage, and sets a cookie — so there's something to inspect.
+  document.querySelector("#specials").insertAdjacentHTML("beforeend", "<li>Buff Jhol Momo (added by JavaScript)</li>");
+  console.log("👋 Hello from Momo Express! You found the Console.");
+  localStorage.setItem("cart", JSON.stringify([{ dish: "Chicken Steam Momo", qty: 2 }]));
+  document.cookie = "visitedMenu=yes; max-age=3600; path=/";
+  document.querySelector("#broken-button").addEventListener("click", () => {
+    showCart(); // ← this function doesn't exist: a deliberate error for the Console task
+  });
+</script>
+</body>
+</html>

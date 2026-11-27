@@ -1,0 +1,150 @@
+/* ============================================================
+   TOPIC: Transitions and Animations
+   Phase 1 — Web Foundations: HTML & CSS (Week 4, Day 2)
+   By the end, students can:
+     - smooth a state change with transition
+     - move/scale/rotate with transform (cheap for the browser)
+     - write a @keyframes animation
+     - respect users who prefer reduced motion
+   Prerequisites: 07-css-basics-selectors.css (pseudo-classes)
+   Run: open 15-transitions-animations.html with Live Server
+   Deck: "Web Foundations HTML & CSS" slides 39–40
+   ============================================================ */
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 2rem;
+}
+
+
+/* ===== 1. TRANSITION: SMOOTH CHANGE BETWEEN TWO STATES =====
+   Notes: transition: PROPERTY DURATION EASING;
+          It goes on the NORMAL state, and animates whenever that property changes (hover, focus, class change).
+          Keep UI transitions short: 150–300ms. */
+.btn {
+  background: #d9442b;
+  color: white;
+  border: 0;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms ease, transform 200ms ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: #a8321e;
+  transform: translateY(-2px);
+}
+
+.btn:focus-visible {
+  outline: 3px solid #2b7bd9;
+  outline-offset: 2px;
+}
+
+/* ⚠️ Common mistake: transition: all
+   Wrong: transition: all 0.3s;        → animates things you didn't mean to (layout jumps, slow pages)
+   Right: list the exact properties: transition: background-color 200ms, transform 200ms; */
+
+/* ✏️ LIVE CODE: change the duration to 2s so everyone can SEE the transition, then back to 200ms */
+
+
+
+/* ===== 2. TRANSFORM: MOVE, SCALE, ROTATE =====
+   Notes: translate / scale / rotate don't change the layout around the element,
+          and the browser animates them smoothly (also opacity). Prefer them over animating width/top/margin. */
+.card {
+  width: 260px;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 15%);
+}
+
+/* ===== 3. @keyframes: ANIMATIONS THAT RUN ON THEIR OWN =====
+   Notes: Define the steps once with @keyframes, then attach with animation:
+            animation: NAME DURATION EASING DELAY ITERATION-COUNT;
+          Use for loaders, attention badges — sparingly. */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.dot {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.dot:nth-child(2) { animation-delay: 150ms; }
+.dot:nth-child(3) { animation-delay: 300ms; }
+
+@keyframes pop-in {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.badge-new {
+  display: inline-block;
+  background: #2e7d32;
+  color: white;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  animation: pop-in 400ms ease-out;
+}
+
+/* ✏️ LIVE CODE: write a "shake" keyframe for a wrong coupon code (translateX -5px → 5px) */
+
+
+
+/* ===== 4. RESPECT REDUCED MOTION =====
+   Notes: Some users get dizzy or sick from motion. Their OS has a "reduce motion" setting.
+          Honour it. Test: DevTools → Rendering → "Emulate CSS prefers-reduced-motion". */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;   /* a justified !important: an accessibility override */
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ⚠️ Common mistake: motion everywhere
+   Wrong: every element fades/slides in on scroll; things bounce forever
+   Right: motion that EXPLAINS something (feedback on click, a loading state) — and nothing more */
+
+/* 🤖 AI tip: AI-generated landing pages love heavy animation. Ask it: "Remove any animation that isn't
+   feedback or a loading state, and add a prefers-reduced-motion block." */
+
+/* 🧪 TRY IT
+   1. ★   Give every link a colour transition on hover/focus (150ms).
+   2. ★★  Make a card that lifts (translateY) and gets a shadow on hover.
+   3. ★★★ Build a 3-dot loading animation of your own, and prove it stops with reduced motion on.
+   Starter: practice/15-motion.html */
+
+/* ===== RECAP — ask the class =====
+   1. Where do you put the transition property — normal state or hover state?
+   2. Why animate transform/opacity instead of width/top?
+   3. Transition vs @keyframes animation?
+   4. What is prefers-reduced-motion for?
+   5. Why is transition: all a bad habit?
+   Practice: practice/15-motion.html
+   Next: 16-css-architecture/ */

@@ -1,0 +1,42 @@
+/* PRACTICE — P1.14 Responsive design (this CSS is desktop-only and breaks on phones)
+   ★   Make .courses stack on phones and show 3 columns from 900px (mobile-first, min-width).
+   ★★  Make the .header/.nav a horizontal row only from 600px up; stacked below that.
+   ★★★ Remove every fixed width that causes sideways scrolling at 320px. Use DevTools to find them. */
+
+.wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #222;
+  color: white;
+}
+
+.header a {
+  color: white;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.courses {
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.course {
+  border: 1px solid #ddd;
+  padding: 2rem;
+}

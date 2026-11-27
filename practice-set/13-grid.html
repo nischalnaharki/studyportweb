@@ -1,0 +1,53 @@
+<!doctype html>
+<!-- ============================================================
+     DEMO PAGE for 13-grid.css  (lesson notes are in the .css file)
+     Phase 1 — Week 4 · Run: Live Server. DevTools → click the "grid" badge to see the lines.
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grid | Momo Express</title>
+  <link rel="stylesheet" href="13-grid.css">
+</head>
+<body>
+<div class="page">
+  <header class="page-header">Momo Express Admin</header>
+  <nav class="page-sidebar" aria-label="Admin">
+    <ul>
+      <li><a href="#orders">Orders</a></li>
+      <li><a href="#menu">Menu</a></li>
+    </ul>
+  </nav>
+  <main class="page-main">
+    <h1>Grid: rows and columns at once</h1>
+
+    <h2 id="orders">1–2. Columns with fr</h2>
+    <div class="three-cols">
+      <div class="cell">Today: 120 orders</div>
+      <div class="cell">Revenue: Rs 23,400</div>
+      <div class="cell">Top: Jhol Momo</div>
+    </div>
+
+    <h2>3. Spanning</h2>
+    <div class="gallery">
+      <div class="cell feature">Featured (2×2)</div>
+      <div class="cell">A</div>
+      <div class="cell">B</div>
+      <div class="cell">C</div>
+      <div class="cell">D</div>
+    </div>
+    <h2 id="menu">4. Responsive card grid (no media query)</h2>
+    <ul class="menu-grid">
+      <li class="cell">Chicken Steam</li>
+      <li class="cell">Buff Jhol</li>
+      <li class="cell">Veg Kothey</li>
+      <li class="cell">Paneer C-Momo</li>
+      <li class="cell">Sausage Momo</li>
+    </ul>
+
+  </main>
+  <footer class="page-footer">&copy; 2026 Momo Express</footer>
+</div>
+</body>
+</html>

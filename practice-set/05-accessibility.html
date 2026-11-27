@@ -1,0 +1,130 @@
+<!doctype html>
+<!-- ============================================================
+     TOPIC: Accessibility (a11y)
+     Phase 1 — Web Foundations: HTML & CSS (Week 3, Day 1)
+     By the end, students can:
+       - explain who accessibility is for (everyone — including you on a cracked phone in the sun)
+       - name the 4 POUR principles
+       - spot and fix the most common barriers
+       - run a keyboard-only test
+     Prerequisites: 03-forms-and-validation.html, 04-tables.html
+     Run: Live Server. Then put the mouse AWAY and use only Tab / Shift+Tab / Enter / Space.
+     Deck: "Web Foundations HTML & CSS" slides 16–17
+     Existing class material: ../../studyport academy web/lesson-plan.md (section 4)
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessibility | Momo Express</title>
+  <style>
+    /* Minimal CSS so we can show focus and contrast (CSS starts in 07). */
+    .low-contrast { color: #c8c8c8; }
+    .good-contrast { color: #333; }
+    a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #d9442b; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <a href="#main">Skip to main content</a>
+  <header>
+    <nav aria-label="Main">
+      <a href="01-html-structure.html">Home</a> ·
+      <a href="03-forms-and-validation.html">Order</a>
+    </nav>
+  </header>
+
+<main id="main">
+  <h1>Build for everyone</h1>
+
+  <!-- ===== 1. WHO IS IT FOR? =====
+       Notes: Blind users (screen readers), low vision (zoom), keyboard-only users, people with
+              tremors, colour blindness (~1 in 12 men), older users, slow 3G, bright sunlight,
+              a broken trackpad. Accessible sites are better for EVERYONE — and often required by law. -->
+
+  <!-- ===== 2. POUR: THE FOUR PRINCIPLES (WCAG) =====
+       Notes: Perceivable  → can they see/hear it? (alt text, captions, contrast)
+              Operable     → can they use it? (keyboard, enough time, no flashing)
+              Understandable → is it clear? (labels, errors, plain language)
+              Robust       → does it work with assistive tech? (valid, semantic HTML) -->
+  <h2>The four principles</h2>
+  <ul>
+    <li><strong>Perceivable</strong> — content can be seen or heard</li>
+    <li><strong>Operable</strong> — everything works with a keyboard</li>
+    <li><strong>Understandable</strong> — labels and errors are clear</li>
+    <li><strong>Robust</strong> — works with screen readers and future browsers</li>
+  </ul>
+
+  <!-- ===== 3. THE MISTAKES THAT MATTER MOST =====
+       Notes: Fix these 6 and you're ahead of most websites in Nepal. -->
+  <h2>Six common barriers</h2>
+
+  <!-- --- 3.1 Missing or bad alt text --- -->
+  <h3>1. Images without useful alt text</h3>
+  <img src="assets/momo.svg" alt="Three steamed momos with red chutney" width="240" height="160">
+
+  <!-- --- 3.2 Inputs without labels --- -->
+  <h3>2. Inputs without labels</h3>
+  <label for="search">Search the menu</label>
+  <input id="search" type="search" name="q">
+
+  <!-- --- 3.3 Low contrast --- -->
+  <h3>3. Low contrast text</h3>
+  <p class="low-contrast">Wrong: light grey on white — hard to read on a phone outside.</p>
+  <p class="good-contrast">Right: dark text on a light background (aim for a contrast ratio of 4.5 : 1).</p>
+
+  <!-- --- 3.4 Colour as the only signal --- -->
+  <h3>4. Colour as the only signal</h3>
+  <p>Wrong: "Spicy dishes are in red." · Right: <strong>🌶 Spicy</strong> — an icon AND a word.</p>
+
+  <!-- --- 3.5 "Click here" links --- -->
+  <h3>5. Vague link text</h3>
+  <p>Wrong: "For the menu, click here." · Right: <a href="02-semantic-html.html">See the full menu</a>.</p>
+
+  <!-- --- 3.6 Removed focus outline --- -->
+  <h3>6. Hidden keyboard focus</h3>
+  <p>Wrong CSS: <code>*:focus { outline: none; }</code> — keyboard users get lost.
+     Right: keep the outline, or style a clearly visible one (see the red ring when you Tab).</p>
+  <button type="button">Tab to me</button>
+
+  <!-- ✏️ LIVE CODE: zoom the page to 200% (Ctrl +). Does anything overlap or disappear? -->
+
+
+
+  <!-- ===== 4. KEYBOARD TEST (do it on every page you build) =====
+       Notes: 1. Mouse away. 2. Tab through everything — is the order sensible?
+              3. Can you always SEE where focus is? 4. Enter on links, Space on buttons/checkboxes.
+              5. Can you reach and use the skip link? -->
+
+  <!-- ===== 5. NATIVE HTML FIRST, ARIA SECOND =====
+       Notes: ARIA attributes (aria-label, role…) add meaning when HTML can't.
+              First rule of ARIA: if a native element does the job, use it.
+              <button> beats <div role="button" tabindex="0"> every time.
+              aria-label on the nav above gives it a NAME when there's no visible heading. -->
+
+  <!-- ⚠️ Common mistake: ARIA to fix bad HTML
+       Wrong: <div role="button" tabindex="0" aria-label="Add">+</div>  (still needs JS for Enter/Space)
+       Right: <button type="button" aria-label="Add one plate">+</button> -->
+
+  <!-- 🤖 AI tip: Prompt → "Act as a screen reader user. Here's my HTML [paste]. Walk through what
+       you'd hear, in order, and point out where you'd get stuck."
+       Check: AI can't really test your page. Also run Lighthouse (DevTools → Lighthouse →
+       Accessibility) and do the keyboard test yourself. Automated tools catch only ~30–40% of issues. -->
+
+  <!-- 🧪 TRY IT
+       1. ★   Run the keyboard test on 03-forms-and-validation.html. Write down 1 thing that works well.
+       2. ★★  Fix the 6 barriers in practice/05-fix-the-barriers.html.
+       3. ★★★ Run Lighthouse Accessibility on your fixed page. Get it to 100, then explain one thing
+              Lighthouse can NOT check.
+       Starter: practice/05-fix-the-barriers.html -->
+
+  <!-- ===== RECAP — ask the class =====
+       1. What does POUR stand for?
+       2. Name 3 of the 6 common barriers.
+       3. Why is outline: none dangerous?
+       4. What's the first rule of ARIA?
+       5. Lighthouse says 100 — is the page definitely accessible? Why not?
+       Practice: practice/05-fix-the-barriers.html
+       Next: 06-seo-fundamentals.html -->
+</main>
+</body>
+</html>

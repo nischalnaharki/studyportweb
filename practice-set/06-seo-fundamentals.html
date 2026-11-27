@@ -1,0 +1,97 @@
+<!doctype html>
+<!-- ============================================================
+     TOPIC: SEO Fundamentals
+     Phase 1 — Web Foundations: HTML & CSS (Week 3, Day 1)
+     By the end, students can:
+       - explain how a search engine finds and understands a page
+       - write a good <title> and meta description
+       - add Open Graph tags for nice link previews (Facebook, Viber, WhatsApp)
+       - list SEO myths to ignore
+     Prerequisites: 02-semantic-html.html
+     Run: Live Server. View Source (Ctrl+U) — Google reads the <head>, you can too.
+     Deck: "Web Foundations HTML & CSS" slides 18–19
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===== 2. WHAT TO PUT IN THE HEAD ===== -->
+
+  <!-- --- 2.1 Title: the blue link in Google results ---
+       Notes: Unique per page, ~50–60 characters, most important words first, brand last. -->
+  <title>Best Jhol Momo in Thamel | Momo Express Kathmandu</title>
+
+  <!-- --- 2.2 Meta description: the grey text under the link ---
+       Notes: ~150 characters. Honest summary that makes people want to click. Not a ranking trick. -->
+  <meta name="description" content="Hand-folded jhol, steam and kothey momos in Thamel, Kathmandu. Open daily 10 AM–9 PM. Order online for delivery inside the Ring Road.">
+
+  <!-- --- 2.3 Canonical: "this is the main address of this page" ---
+       Notes: Stops duplicates (with/without www, ?ref=facebook) splitting your ranking. -->
+  <link rel="canonical" href="https://momoexpress.example/menu">
+
+  <!-- --- 2.4 Open Graph: how the link looks when shared ---
+       Notes: Facebook, LinkedIn, Viber, WhatsApp read these. Image ~1200×630. -->
+  <meta property="og:title" content="Momo Express — Jhol Momo in Thamel">
+  <meta property="og:description" content="Hand-folded momos, delivered inside the Ring Road.">
+  <meta property="og:image" content="https://momoexpress.example/images/share.jpg">
+  <meta property="og:url" content="https://momoexpress.example/menu">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+<main>
+
+  <!-- ===== 1. HOW A SEARCH ENGINE FINDS YOUR PAGE =====
+       Notes: 1. CRAWL — a bot follows links from page to page
+              2. INDEX — it reads the HTML and stores what the page is about
+              3. RANK  — when someone searches, it picks the most useful pages
+       Good HTML helps steps 1 and 2. Useful content wins step 3. -->
+  <h1>Jhol Momo in Thamel</h1>
+  <p>Momo Express serves hand-folded jhol, steam and kothey momos, two minutes from Thamel Chowk.</p>
+
+  <!-- ===== 3. THE BODY MATTERS TOO =====
+       Notes: One clear h1 that matches the topic · headings that describe sections
+              · descriptive link text · alt text on meaningful images · real, useful words.
+       Semantic HTML (P1.02) IS SEO. -->
+  <h2>Our most popular momos</h2>
+  <ul>
+    <li>Buff Jhol Momo — Rs 200</li>
+    <li>Chicken Steam Momo — Rs 180</li>
+  </ul>
+  <p><a href="03-forms-and-validation.html">Order momos for delivery</a></p>
+
+  <!-- ✏️ LIVE CODE: paste this page's title + description into a Google-result mock on the board.
+       Then write one for a StudyPort course page together. -->
+
+
+
+  <!-- ⚠️ Common mistake: SEO myths
+       Wrong: <meta name="keywords" content="momo, best momo, cheap momo…">  (Google ignores it since 2009)
+       Wrong: repeating "momo momo momo" 50 times, hidden text, 5 h1s   (can get you penalised)
+       Wrong: same <title> on every page ("Home")
+       Right: one honest title + description per page, good headings, useful content, fast page. -->
+
+  <!-- 🤖 AI tip: Prompt → "Write 3 options for a <title> (max 60 chars) and meta description
+       (max 155 chars) for this page: [paste h1 + first paragraph]."
+       Check: count the characters, check every claim is TRUE (AI invents "award-winning", "since 1990").
+       A false claim in your description is worse than a plain one. -->
+
+  <!-- 🧪 TRY IT
+       1. ★   Write a title + description for your own Phase 1 project home page.
+       2. ★★  Add Open Graph tags. Test with a "link preview" by pasting your deployed URL in a chat (week 10).
+       3. ★★★ View Source on 3 real Nepali websites. Which has the best title/description? Which has none?
+       Starter: practice/06-seo-head.html -->
+
+  <!-- ===== RECAP — ask the class =====
+       1. Crawl, index, rank — what happens in each?
+       2. Where does the <title> appear?
+       3. What is Open Graph for?
+       4. Does meta keywords help? Why not?
+       5. How is semantic HTML connected to SEO?
+       Practice: practice/06-seo-head.html
+       Next: 07-css-basics-selectors.html -->
+</main>
+</body>
+</html>

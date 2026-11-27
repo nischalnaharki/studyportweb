@@ -1,0 +1,41 @@
+<!doctype html>
+<!-- DEBUGGING LAB (Week 2, Day 4): Momo Express "About & Order" page with hidden HTML bugs.
+     Read README.md first. Don't open solutions/ until the end. -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+</head>
+<body>
+  <div class="header">
+    <img src="../../assets/logo.svg" width="160" height="48">
+    <div class="nav">
+      <a href="menu.html">Menu</a> |
+      <a href="03-forms-and-validation.html">Order</a> |
+      <a href="#contact">click here</a>
+    </div>
+  </div>
+
+  <h1>Momo Express</h1>
+  <h4>About us</h4>
+  <p>We fold every momo by hand, <strong>every morning.</p></strong>
+
+  <h2>Order online</h2>
+  <form action="index.html" method="get">
+    <input type="text" name="name" placeholder="Your name">
+    <input type="number" name="phone" placeholder="Phone">
+
+    <p>Cooking style:</p>
+    <input type="radio" name="steam" value="steam"> Steam
+    <input type="radio" name="fried" value="fried"> Fried
+
+    <div onclick="alert('Ordered!')">Place order</div>
+  </form>
+
+  <h2 id="contact">Contact</h2>
+  <table>
+    <tr><td>Phone</td><td>Email</td></tr>
+    <tr><td>9800000000</td><td>orders@momoexpress.example</td></tr>
+  </table>
+</body>
+</html>

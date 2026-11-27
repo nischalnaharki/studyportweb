@@ -1,0 +1,65 @@
+/* Momo Express — starter stylesheet. Keep this order: tokens → base → layout → components → utilities */
+
+/* ===== 1. TOKENS ===== */
+:root {
+  --color-brand: #d9442b;
+  --color-text: #222;
+  --color-muted: #555;
+  --color-surface: #fff;
+  --color-border: #ddd;
+  --font-body: system-ui, sans-serif;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 2rem;
+  --radius: 8px;
+  --max-width: 1100px;
+}
+
+/* ===== 2. BASE ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* ===== 3. LAYOUT ===== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+/* TODO: menu card grid (Grid), header layout (Flexbox), media queries (mobile-first) */
+
+/* ===== 4. COMPONENTS ===== */
+/* TODO: .site-header, .site-nav, .card, .button, .site-footer … */
+
+/* ===== 5. UTILITIES ===== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* TODO: one purposeful transition + a prefers-reduced-motion block */

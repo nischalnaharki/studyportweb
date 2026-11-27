@@ -1,0 +1,123 @@
+/* ============================================================
+   TOPIC: Grid
+   Phase 1 — Web Foundations: HTML & CSS (Week 4, Day 1–2)
+   By the end, students can:
+     - create rows and columns with grid-template-columns and fr
+     - lay out a whole page with grid-template-areas
+     - make items span rows/columns
+     - build a responsive card grid with repeat(auto-fit, minmax()) — no media queries
+     - choose Flexbox or Grid for a layout
+   Prerequisites: 12-flexbox.css
+   Run: open 13-grid.html with Live Server
+   Deck: "Web Foundations HTML & CSS" slides 34–36
+   Fun practice: cssgridgarden.com (10 min, in class)
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+}
+
+.cell {
+  background: #fff4d6;
+  border: 2px solid #d9442b;
+  padding: 1rem;
+  list-style: none;
+}
+
+
+/* ===== 1. ROWS AND COLUMNS AT THE SAME TIME =====
+   Notes: Flexbox = one direction (a row OR a column). Grid = two directions (rows AND columns).
+          display: grid on the parent, then describe the columns. Children fill the cells in order. */
+
+/* ===== 2. COLUMNS & THE fr UNIT =====
+   Notes: fr = "fraction of the free space". 1fr 1fr 1fr = three equal columns.
+          Mix units: 200px 1fr → fixed sidebar + flexible content.
+          repeat(3, 1fr) = 1fr 1fr 1fr. gap works here too. */
+.three-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+/* ✏️ LIVE CODE: change to 2fr 1fr 1fr, then 200px 1fr 1fr. Predict each before saving. */
+
+
+
+/* ===== 3. SPANNING ROWS & COLUMNS ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 80px;
+  gap: 0.5rem;
+}
+
+.feature {
+  grid-column: span 2;           /* 2 columns wide */
+  grid-row: span 2;              /* 2 rows tall */
+}
+
+/* ===== 4. RESPONSIVE GRID WITH NO MEDIA QUERIES =====
+   Notes: repeat(auto-fit, minmax(160px, 1fr)) reads as:
+          "fit as many columns as you can, each at least 160px, share the rest equally".
+          Phone → 1–2 columns, laptop → 4–5. One line. The most useful line in this lesson. */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  padding: 0;
+}
+
+/* ===== 5. PAGE LAYOUT WITH grid-template-areas =====
+   Notes: Name the areas, then draw the layout as text. What you see is what you get. */
+.page {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header  header"
+    "sidebar main"
+    "footer  footer";
+  min-height: 100vh;
+}
+
+.page-header  { grid-area: header;  background: #2b2b2b; color: white; padding: 1rem; }
+.page-sidebar { grid-area: sidebar; background: #f1f1f1; padding: 1rem; }
+.page-main    { grid-area: main;    padding: 1rem 2rem; }
+.page-footer  { grid-area: footer;  background: #2b2b2b; color: white; padding: 1rem; }
+
+/* ⚠️ Common mistake: a fixed 200px sidebar on a 360px phone → squashed content.
+   We'll stack the areas on small screens with ONE media query in 14-responsive-media-queries.css */
+
+/* ===== 6. FLEXBOX OR GRID? =====
+   Notes: Flexbox → content decides the size; one row/column (navbars, buttons, a card's inside)
+          Grid    → layout decides the size; rows AND columns (page layout, card grids, dashboards)
+          Real pages use both: Grid for the page, Flexbox inside the components. */
+
+/* ⚠️ Common mistake: nesting dozens of flex rows to fake a grid
+   Wrong: .row > .col > .row > .col … (old Bootstrap-style markup)
+   Right: one display: grid container */
+
+/* 🤖 AI tip: Prompt → "Write grid-template-areas for this layout: [ASCII sketch]. Explain each line."
+   Check: DevTools → Layout → show area names. Do the names match your sketch? */
+
+/* 🧪 TRY IT
+   1. ★   Make a 4-column photo gallery with a gap.
+   2. ★★  Make a StudyPort dashboard: header, sidebar, main, footer with grid-template-areas.
+   3. ★★★ Make the menu grid show 1 column on a phone and 4 on a laptop — without a media query.
+   Starter: practice/13-grid.html */
+
+/* ===== RECAP — ask the class =====
+   1. Flexbox vs Grid — one sentence each.
+   2. What does 1fr mean?
+   3. Read repeat(auto-fit, minmax(160px, 1fr)) out loud in plain words.
+   4. How do you make a cell 2 columns wide?
+   5. Which would you use for a navbar? For a page layout?
+   Practice: practice/13-grid.html
+   Next: 14-responsive-media-queries.css */

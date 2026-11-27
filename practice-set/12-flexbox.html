@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- ============================================================
+     DEMO PAGE for 12-flexbox.css  (lesson notes are in the .css file)
+     Phase 1 — Week 4 · Run: Live Server. DevTools → click the "flex" badge next to a container.
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flexbox | Momo Express</title>
+  <link rel="stylesheet" href="12-flexbox.css">
+</head>
+<body>
+
+  <!-- Recipe 1: navbar -->
+  <header class="navbar">
+    <a class="brand" href="01-html-structure.html">Momo Express</a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="02-semantic-html.html">Menu</a></li>
+        <li><a href="03-forms-and-validation.html">Order</a></li>
+        <li><a href="05-accessibility.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<main>
+  <h1>Flexbox: one direction at a time</h1>
+
+  <h2>1–2. Container &amp; main axis</h2>
+  <div class="row demo-row">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+  </div>
+
+  <h2>3. Growing and shrinking</h2>
+  <div class="row">
+    <label class="search-label" for="search">Search</label>
+    <input class="search-input" id="search" type="search" name="q">
+    <button type="button">Go</button>
+  </div>
+
+  <h2>Recipe 2: perfect centring</h2>
+  <div class="center-box">
+    <p>I'm centred both ways.</p>
+  </div>
+
+  <h2>Recipe 3: card row that wraps</h2>
+  <ul class="card-row">
+    <li class="card"><h3>Steam</h3><p>Rs 180</p></li>
+    <li class="card"><h3>Jhol</h3><p>Rs 200</p></li>
+    <li class="card"><h3>Kothey</h3><p>Rs 190</p></li>
+    <li class="card"><h3>C-Momo</h3><p>Rs 220</p></li>
+  </ul>
+</main>
+</body>
+</html>

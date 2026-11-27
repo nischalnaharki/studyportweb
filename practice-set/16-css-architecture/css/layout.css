@@ -1,0 +1,19 @@
+/* LAYER 3 — LAYOUT: page-level structure. Reusable wrappers, not components. */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+.stack > * + * {
+  margin-top: var(--space-3);    /* the "owl" selector: space between siblings */
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+}

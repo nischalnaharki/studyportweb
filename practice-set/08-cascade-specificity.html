@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- ============================================================
+     DEMO PAGE for 08-cascade-specificity.css  (lesson notes are in the .css file)
+     Phase 1 — Week 3 · Run: Live Server. DevTools → Elements → Styles shows crossed-out (losing) rules.
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cascade &amp; Specificity | Momo Express</title>
+  <link rel="stylesheet" href="08-cascade-specificity.css">
+</head>
+<body>
+<main>
+  <h1>Who wins?</h1>
+
+  <h2>2. Source order</h2>
+  <p class="notice">Same selector twice — what colour am I?</p>
+
+  <h2>3. Specificity</h2>
+  <p id="special" class="notice highlight">Type vs class vs id — what colour am I?</p>
+  <ul class="menu">
+    <li class="dish">Chicken Momo <span class="price">Rs 180</span></li>
+    <li class="dish">Buff Momo <span class="price">Rs 200</span></li>
+  </ul>
+
+  <h2>4. Inheritance</h2>
+  <section class="card">
+    <h3>Card title</h3>
+    <p>Do I inherit the card's colour, font and border? Predict, then look.</p>
+    <a href="07-css-basics-selectors.html">A link</a>
+  </section>
+
+  <h2>5. !important</h2>
+  <p class="sale">Sale price (who wins?)</p>
+</main>
+</body>
+</html>

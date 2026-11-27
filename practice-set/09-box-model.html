@@ -1,0 +1,36 @@
+<!doctype html>
+<!-- ============================================================
+     DEMO PAGE for 09-box-model.css  (lesson notes are in the .css file)
+     Phase 1 — Week 3 · Run: Live Server. DevTools → Elements → Computed → the box diagram.
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Box Model | Momo Express</title>
+  <link rel="stylesheet" href="09-box-model.css">
+</head>
+<body>
+<main>
+  <h1>Every element is a box</h1>
+
+  <h2>1–2. Content, padding, border, margin</h2>
+  <div class="box">Chicken Momo — Rs 180</div>
+
+  <h2>3. box-sizing</h2>
+  <div class="card content-box">content-box: 300px wide? Measure me.</div>
+  <div class="card border-box">border-box: really 300px wide.</div>
+
+  <h2>4. Margin collapse</h2>
+  <p class="gap">I have margin-bottom: 2rem.</p>
+  <p class="gap">I have margin-top: 2rem. Is the gap 4rem or 2rem?</p>
+
+  <h2>5. Units</h2>
+  <p class="size-px">16px text — ignores the user's font-size setting.</p>
+  <p class="size-rem">1rem text — follows the user's setting (try Settings → Font size).</p>
+  <div class="parent-em">Parent 20px <span class="child-em">child 1.5em = 30px</span></div>
+  <div class="half">width: 50% of the parent</div>
+  <div class="viewport">height: 20vh (20% of the screen height)</div>
+</main>
+</body>
+</html>

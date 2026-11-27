@@ -1,0 +1,5 @@
+/* PRACTICE — P1.09 Box model
+   ★   .tag: padding 0.5rem 1rem, 2px border, rounded corners (border-radius), margin below.
+   ★★  Make .half cards 50% wide side by side with display: inline-block. What breaks? Write why here.
+       (We fix it properly with Flexbox in P1.12.)
+   ★★★ .exact: 400px wide, 24px padding, 8px border, measuring EXACTLY 400px. Prove it in DevTools → Computed. */

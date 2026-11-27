@@ -1,0 +1,191 @@
+<!doctype html>
+<!-- ============================================================
+     TOPIC: HTML Structure
+     Phase 1 — Web Foundations: HTML & CSS (Week 2, Day 1)
+     By the end, students can:
+       - name the parts of an element (tag, attribute, content)
+       - write the page skeleton from memory
+       - use headings, paragraphs, lists, links and images correctly
+       - explain block vs inline and absolute vs relative paths
+     Prerequisites: Phase 0 (06-terminal-and-dev-setup.sh)
+     Run: open with VS Code → right-click → "Open with Live Server"
+     Deck: "Web Foundations HTML & CSS" slides 2, 5–9
+     ============================================================ -->
+
+<!-- ===== 2. THE PAGE SKELETON =====
+     Notes: Every page needs these lines. Type `!` + Tab in VS Code to get them (Emmet).
+       <!doctype html>  → "use modern HTML" (without it: old "quirks mode")
+       lang="en"        → screen readers pronounce words correctly, translation works
+       charset utf-8    → नेपाली text and emoji show correctly
+       viewport         → phones don't zoom out to a tiny desktop page
+       <title>          → browser tab, bookmarks, Google results
+     <head> = information ABOUT the page · <body> = what you SEE -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML Structure | Momo Express</title>
+</head>
+<body>
+
+  <!-- ===== 1. ELEMENT ANATOMY =====
+       Notes: <tag attribute="value">content</tag>
+              opening tag + content + closing tag = ELEMENT.
+              Attributes give extra info (href, src, alt, lang, id, class).
+              Some elements are empty ("void"): <img>, <br>, <meta>, <input> — no closing tag. -->
+  <h1 id="top">Momo Express</h1>
+  <p class="tagline">Fresh momos in Thamel since 2015.</p>
+
+  <!-- ✏️ LIVE CODE: write one element and label tag / attribute / value / content  -->
+
+
+  <!-- ⚠️ Common mistake: forgetting to close, or closing in the wrong order
+       Wrong: <p>Hot <strong>momo</p></strong>
+       Right: <p>Hot <strong>momo</strong></p>      (last opened = first closed) -->
+
+
+  <!-- ===== 3. NESTING, BLOCK vs INLINE =====
+       Notes: Elements live INSIDE other elements → a family tree (we'll see it as the DOM in P1.17).
+              BLOCK elements start on a new line and take full width: h1, p, ul, div, section.
+              INLINE elements sit inside a line of text: a, strong, em, span, img. -->
+  <p>Our <strong>chicken momo</strong> is the <em>most ordered</em> dish in Thamel.</p>
+
+  <!-- ⚠️ Common mistake: block inside inline / block inside p
+       Wrong: <p><h2>Menu</h2></p>       → the browser silently "fixes" it and breaks your layout
+       Right: <h2>Menu</h2><p>…</p> -->
+
+
+  <!-- ===== 4. HEADINGS & PARAGRAPHS =====
+       Notes: h1–h6 form an OUTLINE, like a book's table of contents. One h1 per page.
+              Never skip levels (h2 → h4) and never pick a heading for its SIZE — CSS does size.
+              <br> = line break inside text (addresses, poems). Not for spacing! -->
+  <h2>About us</h2>
+  <p>Momo Express started as a small stall near Thamel Chowk. Today we serve over 500 plates a day.</p>
+  <h3>Our kitchen</h3>
+  <p>Every momo is folded by hand, every morning.</p>
+  <h3>Find us</h3>
+  <p>Momo Express<br>Thamel Marg, Ward 26<br>Kathmandu 44600</p>
+
+  <!-- Old patterns students will see in the wild: <b>, <i>, <center>, <font>.
+       <center> and <font> are obsolete (don't use). Prefer <strong>/<em> for MEANING;
+       <b>/<i> still exist for style-only bold/italic (e.g. a dish name in another language). -->
+
+  <!-- ✏️ LIVE CODE: write the outline for a college notice page (h1 → h2 → h3) -->
+
+
+
+  <!-- ===== 5. LISTS =====
+       Notes: <ul> = order doesn't matter · <ol> = order matters (steps, rankings)
+              <li> is the ONLY element allowed directly inside ul/ol.
+              <dl> = term + description pairs (FAQ, dish → ingredients). -->
+  <h2>Today's specials</h2>
+  <ul>
+    <li>Buff Jhol Momo</li>
+    <li>Paneer C-Momo
+      <ul>
+        <li>Extra spicy available</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>How to order</h2>
+  <ol>
+    <li>Choose your momo</li>
+    <li>Pick steam, fried or kothey</li>
+    <li>Pay with cash or eSewa</li>
+  </ol>
+
+  <dl>
+    <dt>Kothey</dt>
+    <dd>Half steamed, half pan-fried.</dd>
+    <dt>Jhol</dt>
+    <dd>Served in a spicy sesame-tomato soup.</dd>
+  </dl>
+
+  <!-- ✏️ LIVE CODE: students dictate their top 3 momo places as an <ol> -->
+
+
+
+  <!-- ===== 6. LINKS & PATHS =====
+       Notes: <a href="…"> — the href says WHERE.
+         Absolute URL  → full address to another site (https://…)
+         Relative path → a file in OUR project, from this file's folder
+                         "02-semantic-html.html" (same folder) · "assets/logo.svg" (into a folder)
+                         "../index.html" (one folder up)
+         #id           → jump to an element on this page
+         mailto: tel:  → open email app / phone dialler
+       Link text must make sense ALONE ("View the menu", never "click here"). -->
+  <h2>Links</h2>
+  <ul>
+    <li><a href="02-semantic-html.html">Next lesson: Semantic HTML</a> (relative path)</li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">MDN HTML reference</a> (absolute URL)</li>
+    <li><a href="#top">Back to top</a> (same page)</li>
+    <li><a href="mailto:orders@momoexpress.example">Email our kitchen</a></li>
+    <li><a href="tel:+9779800000000">Call to order</a></li>
+    <li><a href="https://www.openstreetmap.org/search?query=Thamel" target="_blank" rel="noopener">Thamel on the map (opens a new tab)</a></li>
+  </ul>
+
+  <!-- ⚠️ Common mistake: Windows paths and wrong case
+       Wrong: href="C:\Users\sita\Desktop\menu.html"  → works only on Sita's laptop
+       Wrong: src="Assets/Logo.SVG"                    → works on Windows, 404 on the live server (Linux is case-sensitive)
+       Right: href="menu.html"  src="assets/logo.svg"  (relative, all lowercase, no spaces) -->
+
+
+  <!-- ===== 7. IMAGES =====
+       Notes: <img src alt width height>
+         alt    → what the image MEANS, read aloud by screen readers, shown if the image fails
+                  decorative image? alt="" (empty, but present)
+         width/height → browser reserves space, so the page doesn't "jump" while loading
+       <figure> + <figcaption> = image with a visible caption. -->
+  <h2>Images</h2>
+  <img src="assets/logo.svg" alt="Momo Express" width="160" height="48">
+
+  <figure>
+    <img src="assets/momo.svg" alt="Three steamed momos with red chutney on a plate" width="240" height="160">
+    <figcaption>Our signature chicken steam momo — Rs 180</figcaption>
+  </figure>
+
+  <img src="assets/divider.svg" alt="" width="300" height="12">
+
+  <!-- ⚠️ Common mistake: missing or useless alt
+       Wrong: <img src="momo.svg">                  (screen reader may read the file name)
+       Wrong: <img src="momo.svg" alt="image">      (says nothing)
+       Right: <img src="momo.svg" alt="Three steamed momos with red chutney"> -->
+
+  <!-- ✏️ LIVE CODE: break the src path on purpose → show the alt text + the 404 in DevTools Network -->
+
+
+
+  <!-- ===== 8. MEDIA: VIDEO, AUDIO, IFRAME (optional) =====
+       Notes: <video controls> / <audio controls> play files you host.
+              <iframe> embeds another site (YouTube, maps). Always give it a title.
+              Never autoplay sound — it annoys users and browsers block it anyway.
+         <video src="media/kitchen-tour.mp4" controls width="320">
+           <track kind="captions" src="media/kitchen-tour.vtt" srclang="en" label="English">
+         </video>                                                   (needs real files — not included) -->
+  <h2>Find us on the map</h2>
+      
+  <iframe title="Map of Thamel, Kathmandu" width="320" height="200" loading="lazy"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=85.305%2C27.711%2C85.315%2C27.718&amp;layer=mapnik"></iframe>
+
+  <!-- 🤖 AI tip: Prompt → "Review this HTML [paste]. List problems with nesting, headings, alt text
+       and link text. Explain each in one line. Don't rewrite the whole file."
+       Check: AI-written HTML often skips alt text, uses <div> for everything and invents attributes.
+       Always run it through the W3C validator (validator.w3.org). -->
+
+  <!-- 🧪 TRY IT
+       1. ★   Build a "My favourite momo shop" page: skeleton, h1, 2 paragraphs, 1 image with alt.
+       2. ★★  Add an <ol> recipe (5 steps) and a <ul> of ingredients, with a nested list.
+       3. ★★★ Make a second page (contact.html) and link the two pages both ways with RELATIVE paths.
+       Starter: practice/01-my-momo-shop.html -->
+
+  <!-- ===== RECAP — ask the class =====
+       1. What are the 3 parts of an element? Which elements have no closing tag?
+       2. What does the viewport meta tag do?
+       3. Why one h1, and why never skip heading levels?
+       4. Relative vs absolute path — when do you use each?
+       5. When is alt="" correct?
+       Practice: practice/01-my-momo-shop.html
+       Next: 02-semantic-html.html -->
+</body>
+</html>

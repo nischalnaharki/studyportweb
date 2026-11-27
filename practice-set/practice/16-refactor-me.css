@@ -1,0 +1,11 @@
+/* PRACTICE — P1.16 CSS architecture
+   ★   Move every colour, radius and spacing into :root custom properties (tokens).
+   ★★  Rename classes with BEM: .card, .card__title, .card__price, .button, .button--outline. Remove duplication.
+   ★★★ Split into 5 sections or files in the right order: tokens → base → layout → components → utilities. */
+
+.homepage-box-1 { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.homepage-box-2 { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.red-title { color: #d9442b; font-size: 18px; margin: 0; }
+.small-grey { color: #666; font-size: 14px; }
+.btn1 { background: #d9442b; color: white; border: 2px solid #d9442b; border-radius: 8px; padding: 8px 16px; }
+.btn2 { background: white; color: #d9442b; border: 2px solid #d9442b; border-radius: 8px; padding: 8px 16px; }

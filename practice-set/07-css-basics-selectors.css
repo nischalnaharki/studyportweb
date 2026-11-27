@@ -1,0 +1,153 @@
+/* ============================================================
+   TOPIC: CSS Basics & Selectors
+   Phase 1 — Web Foundations: HTML & CSS (Week 3, Day 1–2)
+   (Not a separate bullet in the syllabus, but every CSS topic after it needs it.)
+   By the end, students can:
+     - add CSS three ways and say which one to use
+     - read a CSS rule: selector { property: value; }
+     - target elements by type, class, id, relationship and state
+     - set colours and basic typography
+   Prerequisites: 02-semantic-html.html
+   Run: open 07-css-basics-selectors.html with Live Server; keep this file side by side
+   Deck: "Web Foundations HTML & CSS" slides 20–22
+   ============================================================ */
+
+
+/* ===== 1. THREE WAYS TO ADD CSS =====
+   Notes: inline style="…"   → one element only, hard to maintain (avoid)
+          <style> in <head>  → one page only
+          <link> to a .css   → shared by every page, cached by the browser ← use this
+   See all three in the HTML file. */
+
+
+/* ===== 2. ANATOMY OF A RULE =====
+   Notes: selector  { property: value; property: value; }
+          "WHO"        "WHAT to change" : "TO WHAT"
+   Every declaration ends with a semicolon. A typo = the browser silently skips that line. */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 2rem;
+}
+
+/* ⚠️ Common mistake: a tiny typo kills one declaration (no error shown!)
+   Wrong: colour: red;   color: red   font-size 20px;
+   Right: color: red;    (US spelling, colon, semicolon) — DevTools shows a ⚠️ on invalid lines */
+
+
+/* ===== 3. SELECTORS: CHOOSING WHAT TO STYLE ===== */
+
+/* --- 3.1 Type selector: every element of that tag --- */
+h1 {
+  color: #d9442b;
+}
+
+/* --- 3.2 Class selector: any element with class="…" (your everyday tool) --- */
+.tagline {
+  font-style: italic;
+}
+
+/* --- 3.3 ID selector: one unique element (prefer classes for styling) --- */
+#offer {
+  background: #fff4d6;
+  padding: 0.5rem;
+}
+
+/* --- 3.4 Grouping: same styles for several selectors --- */
+h1,
+h2 {
+  font-weight: 700;
+}
+
+/* --- 3.5 Descendant (space) vs child (>) --- */
+.menu .price {          /* any .price anywhere inside .menu */
+  font-weight: 600;
+}
+
+.dish-list > li {       /* only DIRECT li children of .dish-list */
+  padding: 0.25rem 0;
+}
+
+/* --- 3.6 Two classes on one element (no space!) --- */
+.dish.dish--spicy {
+  color: #b3261e;
+}
+
+/* --- 3.7 Attribute selector --- */
+a[href^="https"] {      /* links whose href STARTS with https → external links */
+  text-decoration-style: dotted;
+}
+
+/* ⚠️ Common mistake: the space matters
+   .dish.dish--spicy  → ONE element with BOTH classes
+   .dish .dish--spicy → a .dish--spicy INSIDE a .dish (matches nothing here) */
+
+/* ✏️ LIVE CODE: style only the price of spicy dishes (hint: combine 3.5 and 3.6) */
+
+
+
+/* ===== 4. PSEUDO-CLASSES & PSEUDO-ELEMENTS =====
+   Notes: pseudo-CLASS  (:)  = a STATE or POSITION: :hover, :focus-visible, :first-child, :nth-child()
+          pseudo-ELEMENT (::) = a PART of an element: ::before, ::after, ::first-letter, ::placeholder */
+a:hover {
+  color: #d9442b;
+}
+
+a:focus-visible,
+input:focus-visible,
+button:focus-visible {
+  outline: 3px solid #2b7bd9;   /* keyboard focus — never remove without a replacement (P1.05) */
+  outline-offset: 2px;
+}
+
+.dish-list > li:nth-child(even) {
+  background: #f6f6f6;           /* zebra stripes */
+}
+
+.dish--spicy::after {
+  content: " 🌶";                 /* decoration added by CSS */
+}
+
+input:invalid {
+  border-color: #b3261e;         /* ties in with form validation from P1.03 */
+}
+
+/* ===== 5. COLOURS =====
+   Notes: named (red) · hex (#d9442b) · rgb(217 68 43) · hsl(9 69% 51%)
+          Add transparency: rgb(0 0 0 / 50%) or #00000080
+          Pick colours with enough contrast (P1.05). DevTools shows the contrast ratio in the colour picker. */
+.price {
+  color: hsl(140 50% 30%);
+}
+
+/* ===== 6. TYPOGRAPHY BASICS =====
+   Notes: font-family (always end with a generic family) · font-size · font-weight
+          line-height (1.4–1.6 for reading) · text-align · text-transform · letter-spacing */
+p {
+  line-height: 1.5;
+  max-width: 60ch;               /* ~60 characters per line is comfortable to read */
+}
+
+h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 1.1rem;              /* rem explained in 09 (box model & units) */
+}
+
+/* 🤖 AI tip: Prompt → "Explain what each selector in this CSS matches in this HTML. [paste both]"
+   Check: open DevTools → Elements, click the element, and see which rules REALLY apply.
+   AI often misreads descendant vs child selectors. */
+
+/* 🧪 TRY IT
+   1. ★   Make every h2 on the page dark blue and every price green, using classes.
+   2. ★★  Zebra-stripe the menu list, and give links a different colour on :hover and :focus-visible.
+   3. ★★★ Using ONLY selectors (no new classes in the HTML), style the LAST dish in the list in bold.
+   Starter: practice/07-selectors.html + practice/07-selectors.css */
+
+/* ===== RECAP — ask the class =====
+   1. Which of the 3 ways to add CSS do we use for real sites, and why?
+   2. .a.b vs .a .b — what's the difference?
+   3. Child (>) vs descendant (space)?
+   4. Pseudo-class vs pseudo-element — give one example of each.
+   5. Why end font-family with sans-serif?
+   Practice: practice/07-selectors.css
+   Next: 08-cascade-specificity.css */

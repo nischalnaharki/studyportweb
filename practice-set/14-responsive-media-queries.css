@@ -1,0 +1,169 @@
+/* ============================================================
+   TOPIC: Responsive Design and Media Queries
+   Phase 1 — Web Foundations: HTML & CSS (Week 4, Day 2)
+   By the end, students can:
+     - explain why most Nepali users see your site on a phone first
+     - write mobile-first CSS and add min-width media queries
+     - pick breakpoints from the CONTENT, not from device names
+     - use fluid sizes (clamp, %, max-width) and responsive images
+   Prerequisites: 12-flexbox.css, 13-grid.css
+   Run: open 14-responsive-media-queries.html → DevTools device toolbar → drag from 320px to 1400px
+   Deck: "Web Foundations HTML & CSS" slides 37–38
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+/* ===== 1. ONE PAGE, EVERY SCREEN =====
+   Notes: Responsive = the SAME HTML adapts its layout to any screen width.
+          In Nepal, most visitors browse on a phone. Design for the 360px screen first.
+          Step 0: the viewport meta tag in the HTML. */
+
+
+/* ===== 2. MOBILE-FIRST: BASE STYLES = SMALL SCREEN =====
+   Notes: Write the phone layout with NO media query. It's usually simpler: everything stacks.
+          Then ADD complexity for bigger screens with min-width queries. */
+.layout {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "content"
+    "sidebar"
+    "footer";
+}
+
+.site-header  { grid-area: header; }
+.content      { grid-area: content; padding: 1rem; }
+.sidebar      { grid-area: sidebar; padding: 1rem; background: #f6f6f6; }
+.site-footer  { grid-area: footer; padding: 1rem; background: #2b2b2b; color: white; }
+
+.site-header {
+  display: flex;
+  flex-direction: column;        /* phone: logo above links */
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #2b2b2b;
+}
+
+.site-header a {
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr;    /* phone: one column */
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* ===== 3. MEDIA QUERIES =====
+   Notes: @media (min-width: 600px) { … } → "apply when the screen is AT LEAST 600px wide".
+          Mobile-first = min-width queries, smallest → largest.
+          Breakpoints: shrink the window until the layout LOOKS bad — that's your breakpoint.
+          Common starting points: ~600px (large phone/tablet), ~900px (laptop). */
+@media (min-width: 600px) {
+  .site-header {
+    flex-direction: row;          /* logo and links side by side */
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr 250px;
+    grid-template-areas:
+      "header  header"
+      "content sidebar"
+      "footer  footer";
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ✏️ LIVE CODE: add a third breakpoint at 1200px that limits the content width (max-width + margin-inline: auto) */
+
+
+
+/* ⚠️ Common mistake: desktop-first with max-width queries piling up
+   Wrong: big desktop CSS, then @media (max-width: 768px) { undo… } @media (max-width: 480px) { undo more… }
+   Right: simple phone CSS first, then ADD with min-width. Less code, fewer overrides. */
+
+
+/* ===== 4. FLUID SIZES WITH clamp() =====
+   Notes: clamp(MIN, PREFERRED, MAX) → grows with the screen but never too small/big.
+          Perfect for headings: no media queries needed for font size. */
+.hero-title {
+  font-size: clamp(1.5rem, 4vw + 1rem, 3rem);
+  line-height: 1.2;
+}
+
+/* ===== 5. RESPONSIVE IMAGES =====
+   Notes: max-width: 100% → an image never overflows its container. height: auto keeps the ratio.
+          (srcset / <picture> serve smaller files to phones — see P1.01; deep dive in Phase 11 performance.) */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-img {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ⚠️ Common mistake: fixed widths
+   Wrong: .container { width: 1200px }   → horizontal scroll on every phone
+   Right: .container { max-width: 1200px; width: 100%; } */
+
+/* ⚠️ Common mistake: testing only by resizing the laptop browser
+   Also test on a REAL phone (same Wi-Fi: Live Server shows a Network URL like http://192.168.x.x:5500). */
+
+/* 🤖 AI tip: Prompt → "Make this CSS mobile-first. Convert max-width media queries to min-width and
+   keep the same look. [paste]". Check: test at 320, 375, 768, 1024, 1440px in DevTools.
+   AI conversions often miss one override and break the tablet size. */
+
+/* 🧪 TRY IT
+   1. ★   Make practice/14-responsive.html stack on phones and show 3 columns from 900px.
+   2. ★★  Turn the nav into a horizontal row only above 600px.
+   3. ★★★ Remove every fixed width that causes horizontal scrolling at 320px. Use DevTools to find them.
+   Starter: practice/14-responsive.html + practice/14-responsive.css */
+
+/* ===== RECAP — ask the class =====
+   1. What does the viewport meta tag do?
+   2. Mobile-first: min-width or max-width queries?
+   3. How do you choose a breakpoint?
+   4. What does clamp(1.5rem, 4vw + 1rem, 3rem) mean?
+   5. One CSS line that stops images overflowing?
+   Practice: practice/14-responsive.css
+   Next: 15-transitions-animations.css */

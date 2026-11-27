@@ -1,0 +1,157 @@
+/* ============================================================
+   TOPIC: Flexbox
+   Phase 1 — Web Foundations: HTML & CSS (Week 4, Day 1)
+   By the end, students can:
+     - explain main axis vs cross axis
+     - use justify-content, align-items, gap and flex-wrap
+     - control item size with flex-grow / flex-shrink / flex-basis (flex: 1)
+     - build 3 recipes: navbar, perfect centring, wrapping card row
+   Prerequisites: 10-display.css, 11-positioning.css
+   Run: open 12-flexbox.html with Live Server
+   Deck: "Web Foundations HTML & CSS" slides 31–33
+   Fun practice: flexboxfroggy.com (10 min, in class)
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+}
+
+main {
+  padding: 1rem 2rem;
+}
+
+.item {
+  background: #fff4d6;
+  border: 2px solid #d9442b;
+  padding: 1rem;
+  min-width: 3rem;
+  text-align: center;
+}
+
+
+/* ===== 1. ONE DIRECTION AT A TIME =====
+   Notes: display: flex on the PARENT (container). Its direct children become flex ITEMS.
+          MAIN axis = flex-direction (row → left to right, column → top to bottom)
+          CROSS axis = the other one.
+   justify-content → main axis · align-items → cross axis.  That's the whole trick. */
+.row {
+  display: flex;
+  gap: 0.5rem;                   /* space BETWEEN items — no more margin hacks */
+  align-items: center;
+}
+
+/* ===== 2. THE PROPERTIES YOU'LL USE EVERY DAY ===== */
+.demo-row {
+  flex-direction: row;           /* row | column */
+  justify-content: space-between; /* flex-start | center | flex-end | space-between | space-around | space-evenly */
+  align-items: center;           /* stretch (default) | flex-start | center | flex-end */
+  min-height: 120px;
+  background: #f6f6f6;
+}
+
+/* ✏️ LIVE CODE: cycle .demo-row through every justify-content value, then switch flex-direction to column.
+   Ask: "Which axis is justify-content controlling now?" */
+
+
+
+/* ===== 3. GROWING & SHRINKING: flex =====
+   Notes: flex-grow   → take a share of the EXTRA space (0 = don't grow)
+          flex-shrink → give up space when too tight (1 = allowed)
+          flex-basis  → starting size before growing/shrinking
+          flex: 1     → shorthand for "grow to fill" — the one you'll use most */
+.search-input {
+  flex: 1;                       /* the input takes all leftover space; label and button stay natural size */
+  padding: 0.5rem;
+}
+
+/* ⚠️ Common mistake: putting flex properties on the wrong element
+   Wrong: .item { display: flex; justify-content: center }   ← to arrange the ITEMS, style their PARENT
+   Right: .row  { display: flex; justify-content: center }
+   (Only the item-level props — flex, align-self, order — go on children.) */
+
+
+/* ===== 4. RECIPES ===== */
+
+/* --- Recipe 1: navbar (logo left, links right) --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #2b2b2b;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.brand {
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Recipe 2: perfect centring (finally!) --- */
+.center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background: #eef5ff;
+}
+
+/* --- Recipe 3: card row that wraps on small screens --- */
+.card-row {
+  display: flex;
+  flex-wrap: wrap;               /* without this, items squash into one line */
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.card {
+  flex: 1 1 180px;               /* grow, shrink, start at 180px → wraps when < 180px each */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* ⚠️ Common mistake: using margins between items
+   Wrong: .card { margin-right: 1rem }  → extra space after the last card, breaks when wrapping
+   Right: gap: 1rem on the container */
+
+/* ✏️ LIVE CODE: shrink the browser window slowly — watch Recipe 3 wrap. Remove flex-wrap: what happens? */
+
+
+
+/* 🤖 AI tip: Prompt → "I want [describe layout]. Should this be Flexbox or Grid? Show the CSS on the
+   PARENT only." Check: resize the window to 320px wide — AI layouts often overflow on small phones. */
+
+/* 🧪 TRY IT
+   1. ★   Build a footer: 3 links centred in a row with a gap.
+   2. ★★  Build a dish card: image on the left, name + price on the right, button at the far right.
+   3. ★★★ Build a pricing row of 3 plans that wraps to one column on a phone — with no media query.
+   Starter: practice/12-flexbox.html */
+
+/* ===== RECAP — ask the class =====
+   1. justify-content works on which axis? align-items?
+   2. What happens to justify-content when flex-direction: column?
+   3. What does flex: 1 mean in plain words?
+   4. Why gap instead of margin?
+   5. Which element gets display: flex — parent or child?
+   Practice: practice/12-flexbox.html
+   Next: 13-grid.css */

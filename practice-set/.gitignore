@@ -1,0 +1,8 @@
+# Exclude all solutions and instructor answer keys
+solutions/
+**/solutions/
+*-weekly-check.md
+
+# OS / editor noise
+.DS_Store
+Thumbs.db

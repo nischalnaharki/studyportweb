@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="160" viewBox="0 0 240 160" role="img" aria-label="Plate of momos">
+  <ellipse cx="120" cy="120" rx="110" ry="30" fill="#f3e9d8" stroke="#c9b18a" stroke-width="3"/>
+  <g fill="#fffaf0" stroke="#d9c7a3" stroke-width="3">
+    <path d="M40 115 q25-60 50 0 z"/><path d="M95 112 q25-65 50 0 z"/><path d="M150 115 q25-60 50 0 z"/>
+  </g>
+  <circle cx="200" cy="70" r="16" fill="#d9442b"/>
+</svg>

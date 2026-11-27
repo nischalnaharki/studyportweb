@@ -1,0 +1,166 @@
+<!doctype html>
+<!-- ============================================================
+     TOPIC: Forms and Validation
+     Phase 1 — Web Foundations: HTML & CSS (Week 2, Day 2–3)
+     By the end, students can:
+       - build a form with properly labelled controls
+       - choose the right input type for the data
+       - group radio buttons/checkboxes with fieldset + legend
+       - use built-in validation (required, min, max, pattern) and explain its limits
+     Prerequisites: 02-semantic-html.html
+     Run: Live Server. Submit the form and WATCH THE URL BAR (method="get" puts the data there).
+     Deck: "Web Foundations HTML & CSS" slides 12–14
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forms and Validation | Momo Express</title>
+</head>
+<body>
+<main>
+  <h1>Order momos online</h1>
+
+  <!-- ===== 1. FORM ANATOMY =====
+       Notes: <form action="where to send" method="get|post">
+                action → URL that receives the data (a backend — Phase 6)
+                method → get: data in the URL (searches, filters)
+                         post: data in the request body (logins, orders, anything private)
+              Each control needs a NAME — that's the key the server receives: name=value.
+              Today action points to THIS page, so you can see name=value pairs in the URL bar. -->
+  <form action="03-forms-and-validation.html" method="get">
+
+    <!-- ===== 2. LABELS =====
+         Notes: <label for="x"> + <input id="x"> are linked:
+                  - screen readers read the label when the input is focused
+                  - clicking the label focuses the input (bigger target on phones)
+                Every control needs a visible label. -->
+    <p>
+      <label for="full-name">Full name</label>
+      <input id="full-name" name="fullName" type="text" autocomplete="name" required>
+    </p>
+
+    <!-- ⚠️ Common mistake: placeholder as the only label
+         Wrong: <input placeholder="Full name">   (disappears while typing, low contrast, not reliably read)
+         Right: <label for="full-name">Full name</label> <input id="full-name" placeholder="e.g. Sita Sharma"> -->
+
+
+    <!-- ===== 3. PICK THE RIGHT INPUT TYPE =====
+         Notes: The type gives the right keyboard on phones + free validation.
+           email → @ keyboard, checks format · tel → number pad · number → quantities
+           date/time → date picker · password → hidden text · url, search, color, range…
+         ⚠️ Phone numbers are NOT type="number" (no maths on them, leading zeros vanish). Use type="tel". -->
+    <p>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
+    </p>
+    <p>
+      <label for="phone">Mobile number</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="numeric"
+             pattern="9[78][0-9]{8}" title="10-digit Nepali mobile number starting with 97 or 98" required>
+    </p>
+    <p>
+      <label for="quantity">Plates</label>
+      <input id="quantity" name="quantity" type="number" min="1" max="20" value="1" required>
+    </p>
+    <p>
+      <label for="delivery-date">Delivery date</label>
+      <input id="delivery-date" name="deliveryDate" type="date">
+    </p>
+
+    <!-- ✏️ LIVE CODE: open this page on a phone (or DevTools device mode) — show the different keyboards -->
+
+
+    <!-- ===== 4. CHOICES: SELECT, RADIO, CHECKBOX, TEXTAREA =====
+         Notes: select   → pick one from a long list
+                radio    → pick EXACTLY ONE from a few (same name = same group)
+                checkbox → pick ANY number (each one independent)
+                textarea → multi-line text
+         fieldset + legend → groups related controls; the legend is read with each option. -->
+    <p>
+      <label for="dish">Dish</label>
+      <select id="dish" name="dish" required>
+        <option value="">-- Choose a momo --</option>
+        <option value="chicken-steam">Chicken Steam Momo — Rs 180</option>
+        <option value="buff-jhol">Buff Jhol Momo — Rs 200</option>
+        <option value="veg-kothey">Veg Kothey Momo — Rs 160</option>
+      </select>
+    </p>
+
+    <fieldset>
+      <legend>Cooking style</legend>
+      <input id="style-steam" name="style" type="radio" value="steam" checked>
+      <label for="style-steam">Steam</label>
+      <input id="style-fried" name="style" type="radio" value="fried">
+      <label for="style-fried">Fried</label>
+      <input id="style-kothey" name="style" type="radio" value="kothey">
+      <label for="style-kothey">Kothey</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Extras (choose any)</legend>
+      <input id="extra-achar" name="extras" type="checkbox" value="achar">
+      <label for="extra-achar">Extra achar</label>
+      <input id="extra-soup" name="extras" type="checkbox" value="soup">
+      <label for="extra-soup">Jhol soup (+Rs 30)</label>
+    </fieldset>
+
+    <p>
+      <label for="notes">Delivery notes</label>
+      <textarea id="notes" name="notes" rows="3" maxlength="200"></textarea>
+    </p>
+
+    <!-- ⚠️ Common mistake: radios with different names
+         Wrong: <input type="radio" name="steam"> <input type="radio" name="fried">  → user can pick BOTH
+         Right: same name="style" on every option in the group -->
+
+
+    <!-- ===== 5. BUILT-IN VALIDATION =====
+         Notes: The browser checks before sending:
+           required → can't be empty · min/max → number/date range · maxlength → text length
+           pattern  → must match a pattern (regex) · type="email" → must look like an email
+         Try submitting empty, then a phone like 12345, then 25 plates. -->
+    <p>
+      <input id="agree" name="agree" type="checkbox" required>
+      <label for="agree">I'll be home to receive the order</label>
+    </p>
+
+    <!-- ===== 6. BUTTON TYPES =====
+         Notes: type="submit" → sends the form (default inside a form!)
+                type="reset"  → clears it (rarely a good idea)
+                type="button" → does nothing by itself (for JavaScript, Phase 2)
+         Always write the type explicitly. -->
+    <button type="submit">Place order</button>
+  </form>
+
+  <!-- ⚠️ Common mistake: "The browser validates, so my data is safe."
+       Wrong: anyone can turn off validation in DevTools or send a request without your form.
+       Right: browser validation = nicer UX. The SERVER must validate again (Phase 6, Phase 8). -->
+
+  <!-- ✏️ LIVE CODE: in DevTools, delete the `required` attribute and submit empty — proof it's not security -->
+
+
+
+  <!-- 🤖 AI tip: Prompt → "Write the HTML pattern attribute for a Nepali mobile number (10 digits,
+       starting 97 or 98). Give 3 valid and 3 invalid test numbers."
+       Check: TEST every number yourself in the form. AI regexes often have small mistakes
+       (missing anchors, wrong lengths). -->
+
+  <!-- 🧪 TRY IT
+       1. ★   Build a StudyPort course enquiry form: name, email, phone, course (select), message.
+       2. ★★  Add a fieldset of radio buttons for the shift (morning/day/evening) and checkboxes for interests.
+       3. ★★★ Add validation: phone pattern, message 20–300 characters, a required consent checkbox.
+              Then try to break each rule and screenshot the browser's message.
+       Starter: practice/03-course-enquiry-form.html -->
+
+  <!-- ===== RECAP — ask the class =====
+       1. What two things does linking a label to an input do?
+       2. get vs post — which one for a login form, and why?
+       3. Why is a phone number type="tel", not type="number"?
+       4. Radio vs checkbox?
+       5. Is browser validation enough? Why not?
+       Practice: practice/03-course-enquiry-form.html
+       Next: 04-tables.html -->
+</main>
+</body>
+</html>

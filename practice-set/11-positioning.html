@@ -1,0 +1,46 @@
+<!doctype html>
+<!-- ============================================================
+     DEMO PAGE for 11-positioning.css  (lesson notes are in the .css file)
+     Phase 1 — Week 3 · Run: Live Server. Scroll the page to see sticky and fixed.
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Positioning | Momo Express</title>
+  <link rel="stylesheet" href="11-positioning.css">
+</head>
+<body>
+  <header class="site-header">Momo Express — sticky header</header>
+<main>
+  <h1>Taking a box out of the normal flow</h1>
+
+  <h2>1. static (default)</h2>
+  <div class="box">I'm in the normal flow.</div>
+
+  <h2>2. relative</h2>
+  <div class="box nudge">Nudged 20px — but my old space is kept.</div>
+  <div class="box">I didn't move.</div>
+
+  <h2>3. absolute (inside a relative parent)</h2>
+  <article class="dish-card">
+    <img src="assets/momo.svg" alt="Plate of chicken momos" width="240" height="160">
+    <span class="badge">New</span>
+    <h3>Chicken Momo</h3>
+    <p>Rs 180</p>
+  </article>
+
+  <h2>4. sticky &amp; fixed</h2>
+  <p class="long">Scroll down. The header sticks to the top once it reaches it. The chat button is fixed to the
+     screen corner no matter what.</p>
+
+  <h2>5. z-index</h2>
+  <div class="stack">
+    <div class="layer layer-a">A (z-index 1)</div>
+    <div class="layer layer-b">B (z-index 3)</div>
+    <div class="layer layer-c">C (z-index 2)</div>
+  </div>
+</main>
+  <a class="chat-button" href="tel:+9779800000000">Call to order</a>
+</body>
+</html>

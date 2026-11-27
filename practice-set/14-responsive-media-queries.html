@@ -1,0 +1,46 @@
+<!doctype html>
+<!-- ============================================================
+     DEMO PAGE for 14-responsive-media-queries.css  (lesson notes are in the .css file)
+     Phase 1 — Week 4 · Run: Live Server → DevTools device toolbar (Ctrl+Shift+M) → drag the width
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- 1. Without this line, phones pretend to be 980px wide and zoom out. Never delete it. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsive Design | Momo Express</title>
+  <link rel="stylesheet" href="14-responsive-media-queries.css">
+</head>
+<body>
+<div class="layout">
+  <header class="site-header">
+    <a class="brand" href="01-html-structure.html">Momo Express</a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="02-semantic-html.html">Menu</a></li>
+        <li><a href="03-forms-and-validation.html">Order</a></li>
+        <li><a href="05-accessibility.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <aside class="sidebar">
+    <h2>Opening hours</h2>
+    <p>10 AM – 9 PM, every day</p>
+  </aside>
+
+  <main class="content">
+    <h1 class="hero-title">Hand-folded momos, delivered across Kathmandu</h1>
+    <img class="hero-img" src="assets/momo.svg" alt="Plate of steamed momos with chutney" width="240" height="160">
+    <ul class="menu-grid">
+      <li class="card"><h3>Chicken Steam</h3><p>Rs 180</p></li>
+      <li class="card"><h3>Buff Jhol</h3><p>Rs 200</p></li>
+      <li class="card"><h3>Veg Kothey</h3><p>Rs 160</p></li>
+      <li class="card"><h3>Paneer C-Momo</h3><p>Rs 220</p></li>
+    </ul>
+  </main>
+
+  <footer class="site-footer">&copy; 2026 Momo Express · Thamel</footer>
+</div>
+</body>
+</html>

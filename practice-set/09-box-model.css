@@ -1,0 +1,133 @@
+/* ============================================================
+   TOPIC: Box Model (and CSS Units)
+   Phase 1 — Web Foundations: HTML & CSS (Week 3, Day 2)
+   By the end, students can:
+     - name the 4 layers of every box: content, padding, border, margin
+     - explain why box-sizing: border-box makes widths predictable
+     - predict margin collapse between vertical blocks
+     - choose between px, rem, em, %, vw/vh
+   Prerequisites: 08-cascade-specificity.css
+   Run: open 09-box-model.html with Live Server → DevTools → Computed (box diagram)
+   Deck: "Web Foundations HTML & CSS" slides 26–28
+   ============================================================ */
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 2rem;
+}
+
+
+/* ===== 1. EVERY ELEMENT IS A BOX =====
+   Notes: From the inside out:
+            content → padding (space INSIDE the border) → border → margin (space OUTSIDE)
+          Background colour fills content + padding. Margin is always transparent. */
+
+/* ===== 2. PADDING, BORDER, MARGIN SHORTHANDS =====
+   Notes: 1 value  → all sides             padding: 1rem;
+          2 values → top/bottom  left/right padding: 0.5rem 1rem;
+          4 values → clockwise: top right bottom left (TRouBLe)  margin: 0 auto 1rem 0; */
+.box {
+  background: #fff4d6;
+  padding: 1rem 1.5rem;
+  border: 3px solid #d9442b;
+  margin: 1rem 0;
+  width: 250px;
+}
+
+/* ✏️ LIVE CODE: change padding vs margin and watch the DevTools box diagram — which one gets the background? */
+
+
+
+/* ===== 3. box-sizing: THE MOST USEFUL RESET =====
+   Notes: Default (content-box): width = content ONLY. Padding + border are ADDED on top.
+            width 300 + padding 2×20 + border 2×5 = 350px on screen 😱
+          border-box: width = the whole visible box. Padding eats inward. 300 means 300.
+   Put this at the top of every project: */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.card {
+  width: 300px;
+  padding: 20px;
+  border: 5px solid #2b7bd9;
+  margin-bottom: 1rem;
+}
+
+.content-box {
+  box-sizing: content-box;      /* undo the reset for this one, to compare: really 350px */
+}
+
+.border-box {
+  box-sizing: border-box;       /* really 300px */
+}
+
+/* ⚠️ Common mistake: "I set width: 100% and padding, now there's a horizontal scrollbar!"
+   Wrong: content-box + width: 100% + padding → wider than the screen
+   Right: the border-box reset above */
+
+
+/* ===== 4. MARGIN COLLAPSE =====
+   Notes: Vertical margins between blocks don't add up — the BIGGER one wins.
+          2rem + 2rem = 2rem gap, not 4rem. (Horizontal margins and flex/grid children don't collapse.) */
+.gap {
+  margin: 2rem 0;
+  background: #eef5ff;
+}
+
+/* ===== 5. UNITS: px, rem, em, %, vw/vh =====
+   Notes: px  → fixed. OK for borders, shadows.
+          rem → relative to the ROOT font size (usually 16px). Use for font-size, spacing. Respects user settings.
+          em  → relative to the CURRENT element's font size. Compounds when nested (careful!).
+          %   → relative to the PARENT (width).
+          vw/vh → % of the viewport (screen) width/height. 100vw = full screen width.
+   Rule of thumb: rem for text & spacing, % / fr for layout widths, px for hairlines. */
+.size-px {
+  font-size: 16px;
+}
+
+.size-rem {
+  font-size: 1rem;
+}
+
+.parent-em {
+  font-size: 20px;
+}
+
+.child-em {
+  font-size: 1.5em;             /* 1.5 × 20px = 30px */
+}
+
+.half {
+  width: 50%;
+  background: #e8f5e9;
+}
+
+.viewport {
+  height: 20vh;
+  background: #f3e5f5;
+  margin-top: 1rem;
+}
+
+/* ⚠️ Common mistake: em compounding
+   .menu { font-size: 1.2em } inside .menu inside .menu → 1.2 × 1.2 × 1.2 = text keeps growing. Use rem. */
+
+/* 🤖 AI tip: Prompt → "Why does my 300px card measure 350px in DevTools? [paste CSS]"
+   Check: a good answer mentions box-sizing. If AI suggests "just set width: 250px" — that's a hack, not a fix. */
+
+/* 🧪 TRY IT
+   1. ★   Make a price tag: padding 0.5rem 1rem, 2px border, rounded corners (border-radius), margin below.
+   2. ★★  Make two cards exactly 50% wide side by side? (Try it with display: inline-block — what breaks? We fix it in Flexbox.)
+   3. ★★★ Build a 400px card with 24px padding and an 8px border that measures EXACTLY 400px. Prove it in DevTools.
+   Starter: practice/09-price-tags.html + practice/09-price-tags.css */
+
+/* ===== RECAP — ask the class =====
+   1. Name the 4 layers of the box, inside to outside.
+   2. Does background colour show under padding? Under margin?
+   3. What does box-sizing: border-box change?
+   4. Two 2rem vertical margins meet — how big is the gap?
+   5. rem vs em — which one compounds?
+   Practice: practice/09-price-tags.css
+   Next: 10-display.css */

@@ -1,0 +1,105 @@
+/* ============================================================
+   TOPIC: Display
+   Phase 1 — Web Foundations: HTML & CSS (Week 3, Day 3)
+   By the end, students can:
+     - predict how block, inline and inline-block boxes sit in the flow
+     - change an element's display (e.g. links as blocks)
+     - choose between display: none and visibility: hidden
+   Prerequisites: 09-box-model.css
+   Run: open 10-display.html with Live Server
+   Deck: "Web Foundations HTML & CSS" slide 29
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 2rem;
+}
+
+.demo {
+  background: #fff4d6;
+  border: 2px solid #d9442b;
+  padding: 0.25rem 0.5rem;
+}
+
+
+/* ===== 1. block =====
+   Notes: Starts on a NEW LINE, takes the FULL width available. width/height/margin all work.
+          Default for: div, p, h1–h6, ul, li, section, header, form… */
+
+
+/* ===== 2. inline =====
+   Notes: Flows inside the text line. Only as wide as its content.
+          width/height are IGNORED; vertical margin doesn't push other lines.
+          Default for: span, a, strong, em, img (img is special: it does respect width/height). */
+.sized {
+  width: 200px;                 /* ignored by the inline span in section 2! */
+}
+
+/* ===== 3. inline-block =====
+   Notes: Sits in the line like inline, but respects width/height/padding like block.
+          Good for: tags, badges, small buttons in a row. */
+.tag {
+  display: inline-block;
+  width: 80px;
+  text-align: center;
+  border-radius: 999px;
+}
+
+/* ===== 4. CHANGING display =====
+   Notes: display changes BEHAVIOUR, not meaning. A link with display: block is still a link.
+          Classic use: make a whole nav item clickable, not just the text. */
+.nav-link {
+  display: inline-block;
+  padding: 0.75rem 1rem;         /* bigger click/tap target */
+  background: #2b2b2b;
+  color: white;
+  text-decoration: none;
+}
+
+/* ✏️ LIVE CODE: change .nav-link to display: block. What happens to the row? */
+
+
+
+/* ===== 5. HIDING: display: none vs visibility: hidden =====
+   Notes: display: none      → removed from layout AND from screen readers
+          visibility: hidden → invisible but still takes up space
+          (Want to hide visually but keep it for screen readers? A ".visually-hidden" class — P1.16.) */
+.gone {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+/* ⚠️ Common mistake: using <br> or &nbsp; for layout
+   Wrong: <span>Home</span>&nbsp;&nbsp;&nbsp;<span>Menu</span><br><br><br>
+   Right: padding/margin + the right display value (and Flexbox next week). */
+
+/* Old pattern: float: left to put boxes side by side (+ "clearfix" hacks). You'll see it in old
+   Bootstrap 3 / WordPress themes. Today: Flexbox and Grid. Use float only to wrap text around an image. */
+
+/* 🤖 AI tip: Prompt → "Why doesn't width work on my <span>? Explain block vs inline in 3 lines."
+   Check: try the answer in DevTools by toggling display in the Styles panel. */
+
+/* 🧪 TRY IT
+   1. ★   Turn a list of 4 links into a horizontal row of buttons using inline-block.
+   2. ★★  Make the whole button area clickable (not just the text). Prove it by clicking the padding.
+   3. ★★★ Add a "Sold out" badge that's hidden with display: none — then explain when visibility: hidden
+          would be the better choice.
+   Starter: practice/10-11-display-position.html */
+
+/* ===== RECAP — ask the class =====
+   1. Block vs inline — two differences?
+   2. Why is width ignored on a span?
+   3. What does inline-block give you?
+   4. display: none vs visibility: hidden?
+   5. Does display: block on a link change its meaning?
+   Practice: practice/10-11-display-position.html
+   Next: 11-positioning.css */
